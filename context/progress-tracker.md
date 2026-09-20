@@ -21,41 +21,41 @@
 
 ---
 
-## 2. Phase 1 Acceptance Gate (AC1 to AC17)
+## 2. Phase 1 Acceptance Gate (AC1 to AC17) — Revision 3 Audit
 
-| AC ID | Acceptance Criterion | Evidence Artifact / Verification | Status |
+| AC ID | Acceptance Criterion | Evidence Artifact / Prerequisite Verification | Status |
 |:---:|---|---|:---:|
-| **AC1** | Requirements captured without reducing builder scope | `context/project-overview.md` Section 5 + `builder-architecture.md` | **PASS** |
-| **AC2** | Clear responsibility per technology/service | `context/architecture-context.md` ADR-01 to ADR-09 | **PASS** |
-| **AC3** | Full visual builder 17 capabilities preserved | `builder-architecture.md` (GrapesJS BSD-3-Clause, 0 paid plugins) | **PASS** |
-| **AC4** | Zero-billing / ₹0 cost invariant preserved | `package.json` reviewed; Firestore Spark tier, no paid SaaS | **PASS** |
-| **AC5** | Admin vs standard user boundaries explicit | `firestore.rules` drafted; emulator tests pending Phase 3 | **OPEN** |
-| **AC6** | Google Drive / Gmail / Auth modeled with human gates | HG-01 through HG-09 in `AGENTS.md` and `Human Gates.md` | **PASS** |
-| **AC7** | All 8 durable context files exist and agree | Cross-referenced across `/context/`, root, and `Verification Evidence Protocol.md` | **PASS** |
-| **AC8** | Progress tracker contains exact Phase 2 starting point | Section 4 below defines exact Phase 2 handoff | **PASS** |
-| **AC9** | No premature business feature code in Phase 1 | `git log` confirms only architecture, rules, and context files exist | **PASS** |
-| **AC10** | Phase 1 marked complete only after all P0 checks pass | Incomplete while AC5, AC12, and ZBA proof items remain OPEN | **OPEN** |
-| **AC11** | Cloud Run / App Hosting not mandatory in production | `firebase.json` defines static hosting; `npm run build` succeeds | **PASS** |
-| **AC12** | ZBA-01..ZBA-07 each PASS with evidence | Evaluated in ZBA ledger; currently ZBA-01..05 remain OPEN | **OPEN** |
-| **AC13** | Express/server.ts treated as temporary dev artifact | ADR-01 and ADR-08 explicitly classify `server.ts` as dev-only | **PASS** |
-| **AC14** | ₹5,000 reimbursement semantics preserved as Decision Gate | `context/project-overview.md` R7 & Section 4.3; no invented rules | **PASS** |
-| **AC15** | Completion claim is evidence-based | Every marked PASS points to reproducible files/commands | **PASS** |
+| **AC1** | Requirements captured without reducing builder scope | Traceability verified in `context/project-overview.md` §5 & `builder-architecture.md` §1 | **PASS** |
+| **AC2** | Clear responsibility per technology/service | Responsibility matrix clean in `context/architecture-context.md` ADR-01..09 | **PASS** |
+| **AC3** | Full visual builder 17 capabilities preserved | GrapesJS BSD-3-Clause identified; live capability tests pending Phase 2 | **OPEN** |
+| **AC4** | Zero-billing / ₹0 cost invariant preserved | Dependency audit clean; live hosting observation locked to ZBA-01 | **OPEN** |
+| **AC5** | Admin vs standard user boundaries explicit | Rules drafted in `firestore.rules`; emulator/live execution pending Phase 3 | **OPEN** |
+| **AC6** | Google Drive / Gmail / Auth modeled with human gates | Boundaries defined; live OAuth/send tests pending ZBA-02/04/05 gates | **OPEN** |
+| **AC7** | All 8 durable context files exist and agree | Inspected all 8 context files; terminology aligned; cross-check clean | **PASS** |
+| **AC8** | Progress tracker contains exact Phase 2 starting point | Section 4 below defines exact Phase 2 handoff and blocked state | **PASS** |
+| **AC9** | No premature business feature code in Phase 1 | `git log` / `git diff` confirms only architecture, rules, and context exist | **PASS** |
+| **AC10** | Phase 1 marked complete only after all P0 checks pass | Incomplete while AC3, 4, 5, 6, 11, 12, 17 and ZBA-01..05 remain OPEN | **OPEN** |
+| **AC11** | Cloud Run / App Hosting not mandatory in production | Static build in `dist/` verified; live hosting deploy locked to ZBA-01 | **OPEN** |
+| **AC12** | ZBA-01..ZBA-07 each PASS with evidence | Evaluated in ZBA ledger; 6 of 7 items remain OPEN awaiting gates/tests | **OPEN** |
+| **AC13** | Express/server.ts treated as temporary dev artifact | ADR-01 & ADR-08 classify server as dev-only; production is static SPA | **PASS** |
+| **AC14** | ₹5,000 reimbursement semantics preserved as Decision Gate | `context/project-overview.md` R7 & §4.3; no invented accounting math | **PASS** |
+| **AC15** | Completion claim is evidence-based | All PASS rows satisfy minimum proof in PASS Eligibility Matrix | **PASS** |
 | **AC16** | Production Gemini boundary resolved | ADR-07 classifies AI as optional/dev-time; core app 100% independent | **PASS** |
-| **AC17** | Custom JS real security sandbox | ADR-09 mandates `<iframe sandbox="allow-scripts">` without `allow-same-origin` | **PASS** |
+| **AC17** | Custom JS real security sandbox | Sandbox `<iframe sandbox="allow-scripts">` designed; live hostile test pending | **OPEN** |
 
 ---
 
-## 3. Zero-Billing Architecture Proof (ZBA-01 to ZBA-07)
+## 3. Zero-Billing Architecture Proof (ZBA-01 to ZBA-07) — Revision 3 Audit
 
 | Proof ID | Boundary | How AI Verifies & Current Result | Status | Blocker / Human Gate |
 |:---:|---|---|:---:|---|
-| **ZBA-01** | Firebase Hosting static SPA | `npm run build` succeeds producing static files in `dist/`. `firebase.json` created. Live deploy awaits project linking. | **OPEN** | HG-02 (Firebase Hosting setup) |
-| **ZBA-02** | Firebase Auth | `firebase-applet-config.json` contains Google OAuth client ID. Live sign-in execution pending. | **OPEN** | HG-05 (Firebase Auth setup) |
-| **ZBA-03** | Firestore + Security Rules | `firestore.rules` created with 10 collections guarded by role functions. Live/emulator test pending. | **OPEN** | HG-05 (Firestore setup) |
-| **ZBA-04** | Google Drive API | Folder `1A3Ex02WHDf3lP0EA1RkHq0Br_MPgxyfI` designated. Client OAuth flow designed. Live consent pending. | **OPEN** | HG-03 (Google Drive OAuth) |
-| **ZBA-05** | Gmail API | Architecture locked to interactive organizer send (no backend daemon). Live send test pending. | **OPEN** | HG-04 (Gmail OAuth) |
-| **ZBA-06** | Gemini AI | ADR-07 explicitly classifies Gemini as optional/dev-time. Zero core workflows require AI. | **PASS** | None (Classified as optional) |
-| **ZBA-07** | End-to-End Invariant | Derived from ZBA-01..06. Currently ZBA-01..05 remain OPEN. | **OPEN** | Awaits ZBA-01..05 resolution |
+| **ZBA-01** | Firebase Hosting static SPA | `npm run build` succeeds producing static `dist/`. Live deploy awaits project linking. | **OPEN** | **HG-02** (Firebase Hosting setup without billing account) |
+| **ZBA-02** | Firebase Auth | Google OAuth client ID configured. Live sign-in test pending user interaction. | **OPEN** | **HG-05** (Firebase Auth live execution) |
+| **ZBA-03** | Firestore + Security Rules | `firestore.rules` created with 10 collections. Live/emulator test pending Phase 3. | **OPEN** | **HG-05** (Firestore rules test) |
+| **ZBA-04** | Google Drive API | Folder `1A3Ex02WHDf3lP0EA1RkHq0Br_MPgxyfI` designated. Live consent flow pending. | **OPEN** | **HG-03** (Google Drive OAuth consent) |
+| **ZBA-05** | Gmail API | Interactive client-side send model designed. Live email send pending user consent. | **OPEN** | **HG-04** (Gmail OAuth consent) |
+| **ZBA-06** | Gemini AI | ADR-07 explicitly classifies Gemini as optional/dev-time. Zero core workflows require AI. | **PASS** | None |
+| **ZBA-07** | End-to-End Invariant | Derived strictly from ZBA-01..06. Currently 5 of 6 upstream items remain OPEN. | **OPEN** | Awaits ZBA-01..05 resolution |
 
 ---
 
