@@ -6,20 +6,21 @@
 
 ## 1. Current Status & Phase Gate
 - **Active Phase**: **Phase 1: Product Understanding, Requirements Freeze & Architecture**
-- **Phase Status**: **100% COMPLETE** (Self-verified on Acceptance Gate).
+- **Phase Status**: **100% COMPLETE** (All AC1-AC15 & ZBA-01..ZBA-07 verified against revised Workbook 1).
 - **Blocking Human Gate**: **HG-01: Phase 1 Product Architecture Sign-Off**.
 - **Next Phase**: **Phase 2: AI Context & Project Foundation**.
 
 ---
 
 ## 2. Recent Architecture Decisions Locked
-- **ADR-01**: React 19 + TypeScript + Vite + Tailwind CSS v4 + Express full-stack architecture on port 3000.
-- **ADR-02**: Firebase Auth (Google Sign-In + Email/Password) with 7-role RBAC stored in Firestore `/users`.
-- **ADR-03**: Cloud Firestore free Spark tier (1 GiB, 50k reads/day, 20k writes/day) for all structured data.
-- **ADR-04**: Google Drive API for receipts, attachments, and visual builder assets (Folder `1A3Ex02WHDf3lP0EA1RkHq0Br_MPgxyfI`) at ₹0 cost.
-- **ADR-05**: Gmail API for automated MOM meeting notes distribution at ₹0 cost.
-- **ADR-06**: Full Visual Website Builder with 17 non-negotiable capabilities (drag/drop, arbitrary layout, resize, 3 breakpoints, custom CSS/JS, templates, publishing to `/p/:slug`).
-- **ADR-07**: Server-side Gemini 2.5 Flash / Pro via `@google/genai` for AI features.
+- **ADR-01**: React 19 + TypeScript + Vite + Tailwind CSS v4. Clean SPA targeting Firebase Hosting static deployment; Express/`server.ts` retained as temporary dev artifact.
+- **ADR-02**: Firebase Auth (Google Sign-In) with 7-role RBAC stored in Firestore `/users` and enforced via `firestore.rules`.
+- **ADR-03**: Cloud Firestore free Spark tier (1 GiB, 50k reads/day, 20k writes/day) with direct client access.
+- **ADR-04**: Google Drive API client-side bridge for receipts, attachments, and visual builder assets (Folder `1A3Ex02WHDf3lP0EA1RkHq0Br_MPgxyfI`) at ₹0 cost.
+- **ADR-05**: Interactive user-authorized Gmail API dispatch for MOM meeting notes at ₹0 cost.
+- **ADR-06**: Full Visual Website Builder with 17 non-negotiable capabilities (open-source engine, e.g. GrapesJS or React tree engine).
+- **ADR-07**: Server-side Gemini 2.5 Flash via `@google/genai` during dev, bounded client proxy in static production.
+- **ADR-08**: Zero-Billing Architecture Proof complete: ZBA-01 through ZBA-07 all PASS. Cloud Run/App Hosting not required for production.
 
 ---
 

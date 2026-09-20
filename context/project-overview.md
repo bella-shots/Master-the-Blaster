@@ -86,3 +86,26 @@ Target scale: ~20 company users. 7 distinct roles are defined:
   - Page publishing: Publishes live to `/p/:slug` with instant client-side or server rendering.
   - Asset management backed by Google Drive.
   - Full Undo/Redo stack and auto-saving drafts.
+
+---
+
+## 5. Frozen Requirements Inventory (R1 to R15)
+
+| Req ID | Module / Area | Frozen Specification | Priority | Status |
+|---|---|---|:---:|:---:|
+| **R1** | Master Site | Master website with Projects, Finance, HR and custom page routing. | P0 | Frozen |
+| **R2** | Projects | Create/edit projects, event dates, countdowns, member access, files, expenses, MOM, notes. | P0 | Frozen |
+| **R3** | Checklist Excel | Upload existing `.xlsx` files; structured checklist view with persistent status in Drive/Firestore. | P0 | Frozen |
+| **R4** | Expense Excel | Upload Excel spreadsheets; budget allocation and employee expense details reflected in ledger. | P0 | Frozen |
+| **R5** | MOM | MOM update with interactive email dispatch to registered recipient emails via Gmail API. | P0 | Frozen |
+| **R6** | Out-of-Pocket | Employees record own-pocket claims monthly; approved claims integrate into salary payout calculation. | P0 | Frozen |
+| **R7** | ₹5,000 Rule | Configurable threshold: claims ≤ ₹5,000 use standard path; claims > ₹5,000 trigger dual approval escalation (Finance + Admin). | P0 | Decision Gate |
+| **R8** | Salary | Admin-only salary data: monthly due, pending carry-forward, payslip report generation. | P0 | Frozen |
+| **R9** | Investments | Admin-only investment records: amount, investor name, date, return/maturity date, ROI. | P0 | Frozen |
+| **R10** | HR | Employee details, contact directory, and Firebase Auth UID/role mapping. | P0 | Frozen |
+| **R11** | Flexible Editing | Role-based editing of permitted pages, projects, text, and navigation links. | P0 | Frozen |
+| **R12** | Full Website Builder | All 17 capabilities preserved via mature open-source engine (drag/drop, arbitrary layout, responsive, CSS/JS, etc.). | P0 | Frozen |
+| **R13** | New Pages | Create new pages/sheets with slug, SEO metadata, and published views at `/p/:slug`. | P0 | Frozen |
+| **R14** | Scalability | Initial ~20 users; data models and access controls scale seamlessly to ~100 users. | P0 | Frozen |
+| **R15** | Zero Cost Invariant | Strict ₹0 additional software/service spend; no mandatory Cloud Billing/Blaze dependencies. | P0 | Frozen |
+

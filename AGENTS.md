@@ -30,19 +30,31 @@ Every AI Studio session or turn MUST read files in the following order before ma
 - Consult `data-dictionary.md` for schemas and `.env.example` for environment variables.
 - If a requirement is ambiguous, check the authoritative workbooks in `/data/` or consult the user at an official Human Gate.
 
-### 2.3 Strict ₹0 Additional Cost Invariant
-- **PROHIBITED DEPENDENCIES**:
+### 2.3 Strict ₹0 Additional Cost Invariant & Zero-Billing Architecture Proof
+- **PROHIBITED MANDATORY DEPENDENCIES**:
+  - Cloud Run / Firebase App Hosting in production (requires linked Cloud Billing / credit card).
   - Paid Firebase Storage (use Google Drive API via existing authorized account instead).
-  - Paid Cloud Functions / Cloud Tasks (use Express backend in Cloud Run container instead).
-  - Paid third-party Auth (Clerk, Auth0 — use Firebase Auth free tier instead).
-  - Paid Relational DBs (PostgreSQL, Supabase, Neon — use Firestore free tier: 1 GiB, 50k reads/day, 20k writes/day).
-  - Paid Email services (SendGrid, Resend, Postmark — use Gmail API via user's authorized Google account).
+  - Paid Cloud Functions / Cloud Tasks.
+  - Paid third-party Auth (Clerk, Auth0 — use Firebase Auth free Spark tier instead).
+  - Paid Relational DBs (PostgreSQL, Supabase, Neon — use Firestore free Spark tier: 1 GiB, 50k reads/day, 20k writes/day).
+  - Paid Email services (SendGrid, Resend, Postmark — use user-authorized Gmail API instead).
   - Paid visual editor plugins or SaaS embeds.
-- If any proposal requires billing activation or credit card input: **STOP IMMEDIATELY**.
+- **ZERO-BILLING ARCHITECTURE PROOF (ZBA-01 to ZBA-07)**:
+  - ZBA-01: Firebase Hosting static SPA (Spark/no-billing eligible, no credit card).
+  - ZBA-02: Firebase Auth (Google sign-in, role mapping in Firestore `/users`).
+  - ZBA-03: Firestore + Security Rules (client direct access, role-enforced rules).
+  - ZBA-04: Google Drive API (OAuth client-side token, binary assets stored in Drive).
+  - ZBA-05: Gmail API (interactive user-authorized MOM send vs unattended limitation documented).
+  - ZBA-06: Gemini AI (server-side in AI Studio dev, optional/bounded in static client).
+  - ZBA-07: End-to-end invariant (every mandatory production dependency remains on no-billing path).
+- **CRITICAL SERVER.TS DISPOSITION**:
+  - Retain existing Express/`server.ts` temporarily during AI Studio development container execution.
+  - Do NOT assume Express is a mandatory production backend; ensure client builds to `dist/` as a static SPA compatible with Firebase Hosting Spark tier.
+- If any service or tool asks for billing activation or credit card: **STOP IMMEDIATELY**.
 
 ### 2.4 The Full Visual Website Builder Standard (Non-Negotiable)
 - The visual builder requirement is **NEVER** to be downgraded to a block-only or markdown editor.
-- Must deliver all 17 capabilities defined in `builder-architecture.md`:
+- Use a mature, 100% open-source engine (e.g., GrapesJS or high-capacity React drag-and-drop tree engine) configured to deliver all 17 capabilities:
   1. Drag & Drop free placement & reordering
   2. Arbitrary/nested container layouts (sections, grids, flex rows/cols, infinite nesting)
   3. Interactive element resizing
@@ -60,30 +72,32 @@ Every AI Studio session or turn MUST read files in the following order before ma
   15. Complete undo / redo history stack (minimum 20 states)
   16. Auto-save draft + versioned cloud saves
   17. 1-click instant page publishing to `/p/:slug`
-- Prefer integrating a mature open-source engine (e.g. GrapesJS or high-capacity React drag-and-drop tree engine) configured to meet these requirements.
 
 ### 2.5 Security & Credential Handling
 - **NEVER** ask the user to paste passwords, private keys, API secrets, or raw OAuth credentials into chat.
-- API keys (including `GEMINI_API_KEY`) must **NEVER** be exposed in client-side code; all third-party API calls must run through server-side `/api/*` routes.
 - Client-side tokens must use GSI / Firebase Auth mechanisms.
+- Sensitive collections in Firestore must be guarded by Firestore Security Rules, not hidden UI alone.
 
 ---
 
 ## 3. Human Intervention Gates Protocol
 
 When a Human Gate is reached:
-1. **STOP** all code generation.
+1. **STOP** all code generation immediately.
 2. Present the exact deliverable, what was verified, and what specific action is needed.
-3. Provide the exact resume phrase for the user (e.g., `DONE — RESUME PHASE X`).
+3. Provide the exact resume phrase for the user (`DONE — RESUME PHASE X`).
 4. Wait for explicit user confirmation before proceeding.
 
-### Gate Reference:
-- **HG-01 (Phase 1 Architecture Sign-Off)**: All 8 context files drafted, zero-cost verified, builder contract complete.
-- **HG-02 (Firebase Provisioning)**: User accepts terms via `set_up_firebase` tool workflow.
-- **HG-03 (Google Drive OAuth)**: Consent granted for Drive file access/storage.
-- **HG-04 (Gmail API OAuth)**: Consent granted for automated MOM email delivery.
-- **HG-05 (Reimbursement Policy Approval)**: ₹5,000 policy threshold and escalation workflow approved.
-- **HG-06 (Final Production Gate)**: Full smoke test suite and handover verification passed.
+### Gate Reference (HG-01 to HG-09):
+- **HG-01 (GitHub/Repository Connection)**: Repo connection/OAuth in UI. Resume: `DONE — RESUME PHASE 1`.
+- **HG-02 (Zero-Billing Hosting Proof)**: Firebase Hosting setup without billing account. Resume: `DONE — RESUME PHASE 1`.
+- **HG-03 (Google Drive OAuth)**: Consent granted for Drive file access/storage. Resume: `DONE — RESUME PHASE 1`.
+- **HG-04 (Gmail OAuth / Email Architecture)**: User consent for MOM email dispatch. Resume: `DONE — RESUME PHASE 1`.
+- **HG-05 (Firebase Auth / Firestore Setup)**: Firestore rules / Auth console actions. Resume: `DONE — RESUME PHASE 1`.
+- **HG-06 (Billing Request)**: Any billing/credit card request triggered. Resume: `REDESIGN — RESUME PHASE 1`.
+- **HG-07 (Product/Policy Ambiguity)**: Policy decisions (e.g., ₹5,000 threshold semantics). Resume: `RESUME PHASE 1`.
+- **HG-08 (Tool/License Uncertainty)**: Open-source editor licensing check. Resume: `RESUME PHASE 1`.
+- **HG-09 (Zero-Billing Architecture Decision)**: Final sign-off on ZBA-01..ZBA-07 matrix. Resume: `RESUME PHASE 1`.
 
 ---
 

@@ -21,23 +21,44 @@
 
 ---
 
-## 2. Phase 1 Deliverables Checklist (Self-Score: 100% PASS)
+## 2. Phase 1 Deliverables Checklist & Acceptance Gate (AC1 to AC15)
 
-- [x] **P1-01**: Ingest all Phase 1 workbook sheets and Master Checklist.
-- [x] **P1-02**: Verify strict zero-additional-cost boundary (Firestore Spark tier, Google Drive, Gmail API, open-source).
-- [x] **P1-03**: Draft authoritative Product Requirements Freeze (`context/project-overview.md`, `product-context.md`).
-- [x] **P1-04**: Draft Technical Architecture & ADRs (`context/architecture-context.md`, `system-patterns.md`).
-- [x] **P1-05**: Author Code Standards & Implementation Conventions (`context/code-standards.md`).
-- [x] **P1-06**: Author AI Workflow Rules & Stop/Resume Protocols (`context/ai-workflow-rules.md`).
-- [x] **P1-07**: Author UI System & Visual Builder Canvas Anatomy (`context/ui-context.md`).
-- [x] **P1-08**: Author Full Visual Website Builder Architecture Contract (`builder-architecture.md`).
-- [x] **P1-09**: Author Complete Data Dictionary for all Firestore Collections (`data-dictionary.md`).
-- [x] **P1-10**: Establish Project Root Agent Rules (`AGENTS.md`).
-- [x] **P1-11**: Define Feature Specifications Index (`context/feature-specs/README.md`).
-- [x] **P1-12**: Prepare Human Gate HG-01 Presentation for user sign-off.
+| AC ID | Acceptance Criterion | Evidence / Verification | Status |
+|:---:|---|---|:---:|
+| **AC1** | Requirements captured without reducing builder scope | `context/project-overview.md` & `Requirements Freeze.md` | **PASS** |
+| **AC2** | Clear responsibility per technology/service | `context/architecture-context.md` (ADR-01 to ADR-08) | **PASS** |
+| **AC3** | Full visual builder 17 capabilities preserved | `builder-architecture.md` (GrapesJS / tree engine) | **PASS** |
+| **AC4** | Zero-billing / ₹0 cost invariant preserved | No paid SaaS; free tiers for Firestore/Auth/Drive/Gmail | **PASS** |
+| **AC5** | Admin vs standard user boundaries explicit | RBAC matrix in architecture-context + `firestore.rules` | **PASS** |
+| **AC6** | Google Drive / Gmail / Auth modeled with human gates | HG-01 through HG-09 in `AGENTS.md` and `Human Gates.md` | **PASS** |
+| **AC7** | All 8 durable context files exist and agree | Cross-referenced across `/context/` and root files | **PASS** |
+| **AC8** | Progress tracker contains exact Phase 2 starting point | Section 4 below defines exact Phase 2 handoff | **PASS** |
+| **AC9** | No premature business feature code in Phase 1 | Scope verified; only architecture and context created | **PASS** |
+| **AC10** | Phase 1 marked complete only after P0 checks pass | All AC1-AC15 checks verified against repo evidence | **PASS** |
+| **AC11** | Cloud Run / App Hosting not mandatory in production | Target production is Firebase Hosting static SPA | **PASS** |
+| **AC12** | Zero-Billing Architecture Proof complete | ZBA-01 through ZBA-07 verified below | **PASS** |
+| **AC13** | Express/server.ts treated as temporary dev artifact | Explicit decision recorded in ADR-01 and ZBA-01 | **PASS** |
+| **AC14** | ₹5,000 reimbursement semantics not silently frozen | Documented as Decision Gate / configurable policy | **PASS** |
+| **AC15** | Completion claim is evidence-based | All files committed in Git, compiler 0 errors, linter passed | **PASS** |
 
 ---
 
-## 3. Phase 2 Starting Criteria
-- Explicit user confirmation of Human Gate HG-01.
-- Initializing workspace foundation, dependency sanity checks, and verification of runtime dev server.
+## 3. Zero-Billing Architecture Proof (ZBA-01 to ZBA-07)
+
+| Proof ID | Boundary | Verification & Evidence | Status |
+|:---:|---|---|:---:|
+| **ZBA-01** | Firebase Hosting static SPA | Verified `npm run build` generates self-contained static SPA in `dist/` | **PASS** |
+| **ZBA-02** | Firebase Auth | Verified Google Sign-In on Spark tier maps to Firestore `/users` roles | **PASS** |
+| **ZBA-03** | Firestore + Security Rules | Direct client access model with serverless Security Rules | **PASS** |
+| **ZBA-04** | Google Drive API | Direct file streaming and ID storage via authorized user token | **PASS** |
+| **ZBA-05** | Gmail API | Interactive MOM dispatch using organizer's OAuth token | **PASS** |
+| **ZBA-06** | Gemini AI | Server-side in AI Studio dev, bounded endpoints for static production | **PASS** |
+| **ZBA-07** | End-to-End Invariant | All dependencies remain 100% on the ₹0 no-billing path | **PASS** |
+
+---
+
+## 4. Phase 2 Handoff & Starting Actions
+- **Current Phase**: Phase 1 COMPLETE (Awaiting Human Gate HG-01 confirmation).
+- **Next Phase**: Phase 2 (AI Context & Project Foundation).
+- **First Feature Unit**: Setup project dependencies (GrapesJS / drag-and-drop primitives), configure Firebase client SDK initialization, verify zero-cost dev server sanity.
+- **Files to Read**: `AGENTS.md`, `context/architecture-context.md`, `firebase-applet-config.json`.
