@@ -1,6 +1,6 @@
 # START HERE — READ THIS FIRST
 
-> **Verification Revision 3 — Mechanical Evidence Gate**
+> **Verification Revision 4 — Execution Audit Lock**
 
 ## Mission
 
@@ -10,27 +10,38 @@ This workbook is the complete execution contract for Phase 1. Google AI Studio m
 
 Before changing code, architecture, context, or status:
 
-1. Read every workbook document.
-2. Inspect the current repository and latest commit.
-3. Read the existing Verification Evidence Protocol.
-4. Read Verification State Machine.
-5. Read PASS Eligibility Matrix.
-6. Read Contradiction Audit.
-7. Audit EVERY existing AC1–AC17 and ZBA-01–ZBA-07 status.
-8. Downgrade any unsupported PASS immediately to OPEN or BLOCKED.
-9. Record the audit before making further implementation changes.
+1. Read `REVISION 4 — Execution Audit Lock.md`.
+2. Read every workbook document.
+3. Inspect the current repository and latest commit.
+4. Read the existing Verification Evidence Protocol.
+5. Read Verification State Machine.
+6. Read PASS Eligibility Matrix.
+7. Read Contradiction Audit.
+8. Read Evidence Artifact Registry.
+9. Read Current Phase 1 Audit Baseline.
+10. Audit EVERY existing AC1–AC17 and ZBA-01–ZBA-07 status.
+11. For EVERY current PASS, locate and inspect its exact evidence artifact.
+12. Downgrade unsupported PASS immediately to OPEN or BLOCKED.
+13. Record the audit before further implementation changes.
 
 **A previous agent's PASS is not trusted.**
 
+## Four-state separation
+
+Never confuse implementation, test, evidence and status.
+
+Code/configuration can exist while verification remains OPEN.
+
 ## Non-negotiable execution order
 
-AUDIT → REQUIREMENTS → ARCHITECTURE → TEST PLAN → IMPLEMENT/CONFIGURE → ACTUAL TEST → EVIDENCE ARTIFACT → PREREQUISITE CHECK → CONTRADICTION AUDIT → STATUS UPDATE → CONTEXT UPDATE → FINAL MECHANICAL AUDITS → GATE.
+AUDIT → REQUIREMENTS → ARCHITECTURE → TEST PLAN → IMPLEMENT/CONFIGURE → ACTUAL TEST → EVIDENCE ARTIFACT → REGISTRY → PREREQUISITE CHECK → CONTRADICTION AUDIT → STATUS UPDATE → CONTEXT UPDATE → FINAL MECHANICAL AUDITS → GATE.
 
 Never reverse this order.
 
 ## Forbidden shortcut
 
 The following do NOT prove PASS by themselves:
+
 - source code exists
 - package installed
 - config exists
@@ -41,6 +52,17 @@ The following do NOT prove PASS by themselves:
 - model believes it works
 - another document says PASS
 - another agent previously marked PASS
+
+## Targeted re-audits
+
+Do not skip these:
+
+- AC13 — actual server/runtime dependency graph.
+- AC15 — independent PASS-by-PASS evidence audit.
+- AC16/ZBA-06 — tested Gemini core independence.
+- AC3 — actual engine/license/17-capability evidence.
+- AC17 — actual custom-JS positive + hostile/negative isolation.
+- Phase boundary — actual diff/progress check.
 
 ## Status rule
 
@@ -67,3 +89,5 @@ Retain the ₹5,000 reference, but do not invent calculation, allowance, extra-l
 Phase 1 cannot be COMPLETE and Phase 2 cannot start while any AC1–AC17 or ZBA-01–ZBA-07 is OPEN, BLOCKED or FAIL.
 
 Final completion also requires PASS Eligibility, Dependency Consistency, Contradiction, Context Completeness, Evidence Artifact, Cost/Billing and Phase Boundary audits to PASS.
+
+A Phase 2 handoff or roadmap is not authorization.
