@@ -14,7 +14,7 @@
 | **FS-04** | Phase 5 | Projects Management & Task Workflows | Projects, countdowns, Excel checklist viewer | FS-03 |
 | **FS-05** | Phase 5 | Visual Website Builder Canvas Core | Drag/drop canvas, component tree, properties | FS-03 |
 | **FS-06** | Phase 6 | Finance, Salary Ledgers & Investments | Expense tracking, salary records, investments | FS-03 |
-| **FS-07** | Phase 6 | ₹5,000 Out-of-Pocket Reimbursement Gate | Dual-tier approval workflow (≤5k vs >5k) | FS-06 |
+| **FS-07** | Phase 6 | ₹5,000 Out-of-Pocket Reimbursement Gate | Policy threshold workflow subject to HG-07 Decision Gate | FS-06 |
 | **FS-08** | Phase 6 | HR Employee Directory & Role Mapping | Employee profiles, contact info, role linking | FS-02, FS-03 |
 | **FS-09** | Phase 7 | Minutes of Meeting (MOM) & Notes | Structured meeting records, rich text notes | FS-03 |
 | **FS-10** | Phase 7 | Automated MOM Email via Gmail API | 1-click email dispatch to meeting attendees | FS-09, Drive OAuth |

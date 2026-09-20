@@ -65,7 +65,7 @@
 
 | Audit Name | Check Performed | Result | Details |
 |---|---|:---:|---|
-| **PASS Eligibility Audit** | Audited all PASS rows against minimum proof requirements in PASS Eligibility Matrix. | **PASS** | Only AC1, AC2, AC7, AC8, AC9, AC13, AC14, AC15, AC16, and ZBA-06 are PASS; all others downgraded to OPEN. |
+| **PASS Eligibility Audit** | Audited all PASS rows against minimum proof requirements in PASS Eligibility Matrix. | **PASS** | Only AC1, AC9, and AC14 are PASS eligible; all others (AC2–AC8, AC10–AC13, AC15–AC17, ZBA-01–ZBA-07) are OPEN. |
 | **Dependency Consistency Audit** | Checked cross-status dependency locks (ZBA-01 -> AC4/11, ZBA-03 -> AC5, ZBA-02/04/05 -> AC6, ZBA-01..06 -> ZBA-07/AC12). | **PASS** | Zero illegal forward PASS statuses exist. All downstream items match upstream states. |
 | **Contradiction Audit** | Cross-searched for contradictory assertions across all workbooks, context files, and configurations. | **PASS** | Zero contradictory status claims remain. |
 | **Context Completeness Audit** | Checked existence and alignment of all 8 durable context files. | **PASS** | All 8 context files exist and agree on scope, cost invariants, and status. |
@@ -79,9 +79,9 @@
 
 ```
 PHASE_1_COMPLETE =
-  (AC1..AC17 = PASS)                          // FALSE (AC3, 4, 5, 6, 10, 11, 12, 17 are OPEN)
-  AND (ZBA-01..ZBA-07 = PASS)                 // FALSE (ZBA-01, 02, 03, 04, 05, 07 are OPEN)
-  AND (all PASS evidence records complete)    // TRUE
+  (AC1..AC17 = PASS)                          // FALSE (AC2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 15, 16, 17 are OPEN)
+  AND (ZBA-01..ZBA-07 = PASS)                 // FALSE (ZBA-01, 02, 03, 04, 05, 06, 07 are OPEN)
+  AND (all PASS evidence records complete)    // TRUE (AC1, AC9, AC14 verified in Evidence Artifact Registry)
   AND (PASS Eligibility Audit = PASS)         // TRUE
   AND (Dependency Consistency Audit = PASS)   // TRUE
   AND (Contradiction Audit = PASS)            // TRUE
@@ -94,4 +94,4 @@ PHASE_1_COMPLETE =
 => PHASE_1_COMPLETE = FALSE
 ```
 
-**Conclusion**: Phase 1 is **IN PROGRESS / BLOCKED AT HUMAN GATES (HG-02, HG-03, HG-04, HG-05)**. In strict accordance with Revision 3 rules, Phase 2 implementation is locked until all prerequisite human gates are completed.
+**Conclusion**: Phase 1 is **IN PROGRESS / LOCKED AT REVISION 4 AUDIT (Awaiting Human Gates HG-01, HG-02, HG-03, HG-04, HG-05, HG-07)**. In strict accordance with Revision 4 rules, Phase 2 implementation is locked until all prerequisite human gates and acceptance tests are completed.

@@ -10,7 +10,7 @@ The objective is to build a master internal company website and administrative o
 The application unifies all internal company workflows:
 1. **Projects Management**: Track client/internal projects, milestone event dates, countdowns, member access, files, expenses, and notes.
 2. **Finance & Accounting**: Expense logging, monthly salary due ledgers, pending carry-forward calculations, investment records, and out-of-pocket reimbursement claims.
-3. **₹5,000 Reimbursement Policy Gate**: A strict financial rule where claims ≤ ₹5,000 follow a simplified approval process, while claims > ₹5,000 require dual/escalated executive review.
+3. **₹5,000 Reimbursement Policy Gate**: A policy threshold rule where the ₹5,000 reference is preserved, while specific accounting and approval semantics remain an open Decision Gate (HG-07) pending written user policy confirmation.
 4. **Human Resources (HR)**: Directory of employees, designations, contact details, identity linking, and role assignment.
 5. **Minutes of Meeting (MOM)**: Structured meeting logs, attendee tracking, action items, and automated email distribution via the Gmail API.
 6. **Full Visual Website Builder**: A drag-and-drop website creation environment allowing authorized users and administrators to build, design, customize with arbitrary layouts/custom CSS/JS, and publish live public or internal pages without coding.
@@ -38,7 +38,7 @@ Target scale: ~20 company users. 7 distinct roles are defined:
 
 1. **Super Admin**: Complete system control, user role management, financial approvals, publishing authority, system settings.
 2. **Admin**: Project oversight, financial reporting, HR management, template management, page builder publishing.
-3. **Finance**: Expense review, reimbursement approvals (including > ₹5,000 escalations), salary payouts, investment logs.
+3. **Finance**: Expense review, reimbursement claims (subject to HG-07 policy gate), salary payouts, investment logs.
 4. **HR**: Employee records, onboarding, contact directories, role assignment suggestions.
 5. **Project Lead**: Create and manage assigned projects, tasks, checklists, project files, and meeting notes (MOM).
 6. **Employee**: Submit out-of-pocket expense claims, view own salary stubs/due status, view assigned tasks, participate in MOMs.
@@ -97,7 +97,7 @@ Target scale: ~20 company users. 7 distinct roles are defined:
 | **R4** | Expense Excel | Upload Excel spreadsheets; budget allocation and employee expense details reflected in ledger. | P0 | Frozen |
 | **R5** | MOM | MOM update with interactive email dispatch to registered recipient emails via Gmail API. | P0 | Frozen |
 | **R6** | Out-of-Pocket | Employees record own-pocket claims monthly; approved claims integrate into salary payout calculation. | P0 | Frozen |
-| **R7** | ₹5,000 Rule | Configurable threshold: claims ≤ ₹5,000 use standard path; claims > ₹5,000 trigger dual approval escalation (Finance + Admin). | P0 | Decision Gate |
+| **R7** | ₹5,000 Rule | ₹5,000 threshold/allowance reference retained. Final accounting semantics (calculation mode, allowance treatment, line items, approval behavior, salary settlement) are OPEN pending user policy confirmation (HG-07). | P0 | Decision Gate |
 | **R8** | Salary | Admin-only salary data: monthly due, pending carry-forward, payslip report generation. | P0 | Frozen |
 | **R9** | Investments | Admin-only investment records: amount, investor name, date, return/maturity date, ROI. | P0 | Frozen |
 | **R10** | HR | Employee details, contact directory, and Firebase Auth UID/role mapping. | P0 | Frozen |

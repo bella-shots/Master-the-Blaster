@@ -12,7 +12,7 @@
 - **Brand Primary**: `indigo-600` (hover: `indigo-700`, active: `indigo-800`, light tint: `indigo-50`).
 - **Brand Secondary / Neutral**: `slate-700` and `slate-900` for primary typography; `slate-500` for secondary metadata.
 - **Success / Approvals**: `emerald-600` (light: `emerald-50`, border: `emerald-200`).
-- **Warning / Policy Escalations (> ₹5,000)**: `amber-600` (light: `amber-50`, border: `amber-200`).
+- **Warning / Policy Threshold (₹5,000 Gate)**: `amber-600` (light: `amber-50`, border: `amber-200`).
 - **Danger / Deletions**: `rose-600` (light: `rose-50`, border: `rose-200`).
 
 ### 1.2 Typography & Hierarchy
