@@ -1,0 +1,6 @@
+{
+  "name": "Drive Folder Explorer",
+  "description": "Internal company master workspace with Projects, Finance, HR, Reimbursements, MOM, and Full Visual Website Builder at zero additional cost.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
