@@ -4,29 +4,32 @@ This folder contains the Phase 1 execution contract for Google AI Studio.
 
 ## Revision
 
-**Verification Revision 3 — Mechanical Evidence Gate**
+**Verification Revision 4 — Execution Audit Lock**
 
-This revision replaces evidence guidance with an enforceable verification state machine. The agent must audit existing PASS claims first, downgrade unsupported PASS states, test prerequisites, capture evidence, run contradiction checks, and only then assign PASS.
+Revision 4 strengthens Revision 3 with a mechanical separation between implementation, testing, evidence and verification status. It also requires an Evidence Artifact Registry, a current audit baseline, targeted re-audits for AC13/AC15/AC16/ZBA-06/AC17, and an explicit Phase 2 authorization lock.
 
 ## Mandatory control documents
 
 1. START HERE
-2. Autonomous Control
-3. Requirements Freeze
-4. Architecture Decisions
-5. Zero-Billing Architecture Proof
-6. Human Gates
-7. Context Deliverables
-8. Builder Architecture
-9. Acceptance Gate
-10. Phase 2 Handoff
-11. Stop Resume Protocol
-12. AI Studio Master Prompt
-13. Playbook Alignment
-14. Verification Evidence Protocol
-15. **Verification State Machine**
-16. **PASS Eligibility Matrix**
-17. **Contradiction Audit**
+2. **REVISION 4 — Execution Audit Lock**
+3. Current Phase 1 Audit Baseline
+4. Evidence Artifact Registry
+5. Autonomous Control
+6. Requirements Freeze
+7. Architecture Decisions
+8. Zero-Billing Architecture Proof
+9. Human Gates
+10. Context Deliverables
+11. Builder Architecture
+12. Acceptance Gate
+13. Phase 2 Handoff
+14. Stop Resume Protocol
+15. AI Studio Master Prompt
+16. Playbook Alignment
+17. Verification Evidence Protocol
+18. Verification State Machine
+19. PASS Eligibility Matrix
+20. Contradiction Audit
 
 ## Critical rule
 
@@ -34,16 +37,17 @@ This revision replaces evidence guidance with an enforceable verification state 
 
 A previous agent's PASS is untrusted until re-audited.
 
-A criterion may be PASS only after its exact acceptance condition has actually been tested, reproducible evidence exists, prerequisites are PASS, and contradiction audits are clean.
+A criterion may be PASS only after its exact acceptance condition has actually been tested, reproducible evidence exists, prerequisites are PASS, the Evidence Artifact Registry is complete, and contradiction audits are clean.
 
 If evidence is missing, the only legal state is NOT STARTED, OPEN, BLOCKED or FAIL.
 
 ## Phase completion
 
 Phase 1 is complete only when:
+
 - AC1–AC17 are all evidence-backed PASS.
 - ZBA-01–ZBA-07 are all evidence-backed PASS.
-- Every PASS has a complete evidence record.
+- Every PASS has a complete Evidence Artifact Registry record.
 - All mechanical audits PASS.
 - No contradiction remains.
 - No consequential ambiguity remains unrecorded.
