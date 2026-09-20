@@ -1,22 +1,23 @@
 # Acceptance Gate
 
-> Source: `Phase_1_Product_Architecture_Google_AI_Studio_AUTONOMOUS_REVISED.xlsx`
+> Source: `Phase_1_Product_Architecture_Google_AI_Studio_AUTONOMOUS_REVISED.xlsx` — Verification Revision 2
 
-| PHASE 1 — DEFINITION OF DONE / ACCEPTANCE GATE |  |  |  |  |  |  |
+| ID | Acceptance criterion | How AI verifies | PASS evidence required | If failed/open | Priority | Status |
 | --- | --- | --- | --- | --- | --- | --- |
-| ID | Acceptance criterion | How AI verifies | Evidence to leave in project | If failed | Priority | Status |
-| AC1 | Every user requirement is captured without silently reducing the full builder scope. | Compare Requirements Freeze against source workbook and all declared requirements. | Updated project-overview + requirements inventory. | Fix Phase 1 artifacts; do not proceed. | P0 | Not Started |
-| AC2 | Architecture has one clear responsibility per technology/service. | Review architecture-context and Architecture Decisions for overlap/conflict. | Architecture context + decision record. | Resolve contradiction. | P0 | Not Started |
-| AC3 | Full visual builder remains genuinely in scope. | Check Builder Architecture: all required capabilities present. | Builder architecture contract. | Do not downgrade; choose/reconfigure mature engine. | P0 | Not Started |
-| AC4 | Cost invariant is preserved. | Scan dependencies/config for paid SaaS or billing-required services. | Cost decision record + dependency list. | STOP and redesign or ask user. | P0 | Not Started |
-| AC5 | Admin vs standard-user authorization boundaries are explicit and server-enforced. | Review permissions matrix and mutation-boundary rules. | Permission model + security invariants. | Fix architecture before Phase 2. | P0 | Not Started |
-| AC6 | Google Drive/Gmail/Auth dependencies are explicitly modeled with human gates. | Review integration decisions and Human Gates. | Integration boundary + gate records. | Add missing gate. | P0 | Not Started |
-| AC7 | Seven durable context files plus feature-spec index exist and are internally consistent. | Open and cross-check each file. | All context files committed/saved. | Repair context and re-check. | P0 | Not Started |
-| AC8 | Progress tracker contains exact Phase 2 starting point. | Read progress-tracker and compare with Phase roadmap. | Phase 2 handoff section. | Update tracker. | P0 | Not Started |
-| AC9 | No business feature implementation was incorrectly marked complete during Phase 1. | Review change list/repo diff if available. | Phase boundary note. | Revert/record scope correction. | P0 | Not Started |
-| AC10 | Phase 1 is explicitly marked COMPLETE only after all P0 checks pass. | Run final gate and write completion timestamp. | Progress tracker + phase completion record. | Continue work; do not claim completion. | P0 | Not Started |
-| AC11 | Cloud Run and Firebase App Hosting are not mandatory production dependencies under the ₹0/no-billing invariant. | Review Architecture Decisions and Zero-Billing Architecture Proof; verify no Cloud Billing/Blaze dependency is required. | Decision record + proof evidence. | Reject architecture or stop for user decision. | P0 | Not Started |
-| AC12 | Zero-Billing Architecture Proof is complete for Hosting, Auth, Firestore/Security Rules, Drive, Gmail and Gemini. | Open the proof sheet and verify ZBA-01..ZBA-07 evidence and statuses. | Zero-Billing Architecture Proof + linked test/config evidence. | Do not freeze architecture or proceed to Phase 2. | P0 | Not Started |
-| AC13 | Existing Express/server.ts is not treated as approved production architecture merely because it exists. | Review architecture-context, server.ts role, and proof outcome. | Explicit temporary/retained/removed decision with reason. | Correct context before Phase 1 completion. | P0 | Not Started |
-| AC14 | No consequential ₹5,000 reimbursement/accounting semantics are silently frozen. | Compare Requirements Freeze R7, architecture/context, and any policy decision. | Open decision recorded unless user explicitly confirms semantics. | Remove invented rule and stop at HG-07 if required. | P0 | Not Started |
-| AC15 | Phase 1 completion claim is evidence-based; no self-declared PASS replaces missing proof. | Cross-check each P0 acceptance criterion against actual repository/config/test evidence. | Acceptance matrix with PASS/OPEN/FAIL and evidence references. | Continue Phase 1; do not claim completion. | P0 | Not Started |
+| AC1 | Every user requirement is captured without reducing builder scope. | Trace Requirements Freeze to source requirements. | Traceable requirements matrix. | Fix artifacts. | P0 | Not Started |
+| AC2 | Architecture has one clear responsibility per technology/service. | Cross-check all ADRs/context and actual implementation boundaries. | Architecture responsibility matrix with contradictions resolved. | Resolve contradiction. | P0 | Not Started |
+| AC3 | Full visual builder remains genuinely in scope. | Capability matrix against selected engine/license. | 17-capability evidence map; no capability assumed. | Reconfigure/choose engine. | P0 | Not Started |
+| AC4 | Cost invariant is preserved. | Scan dependencies, hosting, runtime, APIs and configuration. | Dependency inventory + verified billing state. | STOP/redesign. | P0 | Not Started |
+| AC5 | Admin vs standard-user authorization is explicit and enforced. | Run actual/emulator Security Rules tests and review privileged boundaries. | Allowed/denied test results. | Fix security architecture. | P0 | Not Started |
+| AC6 | Drive/Gmail/Auth dependencies and human gates are explicit. | Review proof records and gates. | Integration test records + exact human gates. | Add gate. | P0 | Not Started |
+| AC7 | Required durable context files exist and agree. | Open each file and cross-check terminology/status. | File inventory + consistency check. | Repair context. | P0 | Not Started |
+| AC8 | Phase 2 handoff contains exact starting point and unresolved dependencies. | Compare handoff to final proof/acceptance state. | Handoff with exact next unit and blockers. | Update tracker/handoff. | P0 | Not Started |
+| AC9 | No business-feature implementation is incorrectly marked complete in Phase 1. | Review diff/progress. | Scope boundary record. | Correct scope. | P0 | Not Started |
+| AC10 | Phase 1 COMPLETE is allowed only after all P0 criteria pass. | Final gate checks every row. | All P0 rows PASS with evidence. | Remain incomplete. | P0 | Not Started |
+| AC11 | Cloud Run/App Hosting are not mandatory production dependencies under ₹0 invariant. | Verify architecture and actual dependency graph. | Explicit production graph + no-billing evidence. | Reject/stop. | P0 | Not Started |
+| AC12 | ZBA-01..ZBA-07 are all PASS. | Read Zero-Billing Architecture Proof and evidence references. | Seven evidence-backed PASS results. | Do not freeze or proceed. | P0 | Not Started |
+| AC13 | Express/server.ts is not assumed to be approved production architecture. | Check actual production dependency graph. | Explicit temporary/removed decision supported by proof. | Correct architecture. | P0 | Not Started |
+| AC14 | ₹5,000 reimbursement/accounting semantics remain open until user decision. | Compare R7 with all context/architecture files. | No invented semantics; HG-07 record if needed. | Remove invented rule and stop. | P0 | Not Started |
+| AC15 | Completion claim is evidence-based. | Audit every PASS against Verification Evidence Protocol. | Each PASS points to concrete evidence; no self-declared PASS. | Keep incomplete and correct evidence. | P0 | Not Started |
+| AC16 | Production Gemini boundary is resolved. | Verify either safe no-billing production path or explicit optional/dev-time classification. | Dependency record + credential/runtime evidence. | Stop at HG-09. | P0 | Not Started |
+| AC17 | Custom JavaScript security boundary is real. | Verify sandboxed iframe/origin/process boundary or equivalent documented security mechanism. | Threat model + implementation/test evidence. | Stop at HG-08/HG-09. | P0 | Not Started |
