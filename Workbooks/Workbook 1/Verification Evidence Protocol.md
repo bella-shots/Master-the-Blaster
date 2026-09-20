@@ -45,18 +45,18 @@ Every PASS MUST contain:
 | AC1 | Requirements traceability showing all source requirements and builder scope preserved. | PASS |
 | AC2 | Architecture responsibility matrix with contradictions resolved. | OPEN |
 | AC3 | 17-capability builder matrix tied to selected engine and licensing evidence. | OPEN |
-| AC4 | Dependency inventory plus verified billing/no-billing state. | OPEN |
-| AC5 | Actual/emulator authorization tests for representative allowed/denied operations. | OPEN |
-| AC6 | Auth/Drive/Gmail integration boundaries plus human-gate records. | OPEN |
+| AC4 | Dependency inventory plus verified billing/no-billing state. | BLOCKED |
+| AC5 | Actual/emulator authorization tests for representative allowed/denied operations. | BLOCKED |
+| AC6 | Auth/Drive/Gmail integration boundaries plus human-gate records. | BLOCKED |
 | AC7 | Required durable context files cross-checked for terminology/status consistency. | OPEN |
 | AC8 | Phase 2 handoff and progress state verified against final Phase 1 status. | OPEN |
 | AC9 | Scope/diff review showing no premature Phase 2 business implementation. | PASS |
 | AC10 | Final gate showing every P0 criterion PASS before completion. | OPEN |
-| AC11 | Production dependency graph + evidence that Cloud Run/App Hosting are not mandatory. | OPEN |
-| AC12 | ZBA-01..ZBA-07 each PASS with evidence. | OPEN |
+| AC11 | Production dependency graph + evidence that Cloud Run/App Hosting are not mandatory. | BLOCKED |
+| AC12 | ZBA-01..ZBA-07 each PASS with evidence. | BLOCKED |
 | AC13 | Explicit server.ts production disposition supported by actual dependency/runtime proof. | OPEN |
 | AC14 | R7 cross-check showing no invented ₹5,000 accounting semantics. | PASS |
-| AC15 | Independent audit showing every current PASS points to complete concrete evidence. | OPEN |
+| AC15 | Independent audit showing every current PASS points to complete concrete evidence. | PASS |
 | AC16 | Gemini production dependency decision with tested runtime/credential/cost boundary or tested optional/dev-time classification. | OPEN |
 | AC17 | Custom JavaScript threat model + real isolation mechanism + positive/negative test evidence. | OPEN |
 
@@ -64,13 +64,13 @@ Every PASS MUST contain:
 
 | ID | Required evidence | Status |
 | --- | --- | --- |
-| ZBA-01 | Actual Firebase Hosting deployment + successful route smoke test + verified no-billing state. | OPEN |
-| ZBA-02 | Actual sign-in + deterministic role mapping. | OPEN |
-| ZBA-03 | Actual Firestore Rules emulator/controlled allowed/denied tests. | OPEN |
-| ZBA-04 | Actual Drive OAuth + upload/list/read/reference test. | OPEN |
-| ZBA-05 | Actual Gmail send test + explicit interactive/unattended trigger classification. | OPEN |
+| ZBA-01 | Actual Firebase Hosting deployment + successful route smoke test + verified no-billing state. | BLOCKED |
+| ZBA-02 | Actual sign-in + deterministic role mapping. | BLOCKED |
+| ZBA-03 | Actual Firestore Rules emulator/controlled allowed/denied tests. | BLOCKED |
+| ZBA-04 | Actual Drive OAuth + upload/list/read/reference test. | BLOCKED |
+| ZBA-05 | Actual Gmail send test + explicit interactive/unattended trigger classification. | BLOCKED |
 | ZBA-06 | Actual safe no-billing Gemini test OR tested optional/dev-time classification proving core independence. | OPEN |
-| ZBA-07 | Derived matrix showing ZBA-01..06 all PASS and no hidden billing/server dependency. | OPEN |
+| ZBA-07 | Derived matrix showing ZBA-01..06 all PASS and no hidden billing/server dependency. | BLOCKED |
 
 ## Verification commands / artifacts
 

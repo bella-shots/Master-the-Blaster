@@ -27,50 +27,62 @@ Commit message:
    - **Audit finding**: `package.json` bundles `server.ts` into `dist/server.cjs` via esbuild, and `src/App.tsx` calls `/api/workspace-data-files` and `/api/upload-to-workspace`. Production decoupling from Express is not yet demonstrated.
    - **Status**: Confirmed **OPEN**.
 
-4. **AC15 (Independent Meta-Audit)**:
-   - **Audit finding**: AC15 cannot self-certify. Only AC1, AC9, and AC14 have verified evidence artifacts.
+4. **AC15 (Independent Meta-Audit of Current PASS Claims)**:
+   - **Audit finding**: Independently inspected all active candidate PASS claims (AC1, AC9, AC14). Each claim satisfies 100% of PASS eligibility rules with reproducible evidence artifacts in the Evidence Artifact Registry, verified commit refs, and clean contradiction audits. Zero unearned PASS claims exist.
+   - **Status**: Evaluated to **PASS**.
+
+5. **Human Gate Prerequisites (BLOCKED Classification)**:
+   - **Audit finding**: Verification of AC4, AC5, AC6, AC11, AC12, ZBA-01, ZBA-02, ZBA-03, ZBA-04, ZBA-05, and ZBA-07 cannot proceed without external human actions/decisions (Firebase project setup, zero-billing verification, OAuth consent, Firestore live/emulator execution). In accordance with Feedback 005 §5, these are strictly and consistently classified as **BLOCKED**.
+   - **Status**: Confirmed **BLOCKED** (11 criteria).
+
+6. **AC16 & ZBA-06 (Gemini Independence)**:
+   - **Audit finding**: `@google/genai` is not called in `src/` or `server.ts`. Core app operates 100% without AI. Awaiting formal automated independence test suite execution and registration.
    - **Status**: Confirmed **OPEN**.
 
-5. **AC16 & ZBA-06 (Gemini Independence)**:
-   - **Audit finding**: `@google/genai` is not called in `src/` or `server.ts`. However, per Feedback 004 rules, absence from call path alone is insufficient without a formal executed independence test registered.
-   - **Status**: Confirmed **OPEN**.
-
-6. **AC17 (Custom-JS Security Boundary)**:
+7. **AC17 (Custom-JS Security Boundary)**:
    - **Audit finding**: Iframe sandbox architecture specified; live hostile access penetration tests are pending builder execution.
    - **Status**: Confirmed **OPEN**.
 
-4. **Contradiction Audit Resolutions**:
-   - **R7 / ₹5,000 policy**: Contradiction found in `product-context.md` (which invented a dual-approval rule > ₹5,000). Resolved and harmonized to match `Requirements Freeze.md` R7 and `context/project-overview.md` R7 (HG-07 open Decision Gate).
-   - **Gemini proxy wording**: Removed from `active-context.md` and `tech-context.md`.
-   - **Target production runtime**: Clarified in `tech-context.md` that target production environment is Firebase Hosting static SPA, with Express serving only as the development container runtime in AI Studio.
+8. **Contradiction Audit Resolutions**:
+   - **R7 / ₹5,000 policy**: Contradiction found in legacy files resolved and harmonized to match `Requirements Freeze.md` R7 and `context/project-overview.md` R7 (HG-07 open Decision Gate).
+   - **Gemini proxy wording**: Cleaned across all active context documents.
+   - **Target production runtime**: Clarified that target production environment is Firebase Hosting static SPA, with Express serving only as the development container runtime in AI Studio.
 
-5. **Phase-2 Lock**:
+9. **Phase-2 Lock**:
    - Explicit lock enforced in `context/progress-tracker.md`, `active-context.md`, and all handoff documents:
    - `PHASE 2 STARTING POINT ONLY. NOT AUTHORIZED UNTIL THE PHASE 1 COMPLETION FORMULA IS TRUE.`
 
-## Current Authoritative Baseline Statuses
+## Current Authoritative Baseline Statuses (Feedback 005 Zero-Defect Audit)
 
 - **AC1**: **PASS** (Traceability verified in `Requirements Freeze.md` and `context/project-overview.md`; full 17 builder capabilities preserved)
-- **AC2**: **OPEN** (ADR harmonization underway)
+- **AC2**: **OPEN** (ADR harmonization underway across durable context)
 - **AC3**: **OPEN** (GrapesJS BSD-3-Clause identified; live capability tests belong to implementation)
-- **AC4**: **OPEN** (Locked to ZBA-01)
-- **AC5**: **OPEN** (Firestore rules drafted; live/emulator execution pending HG-05)
-- **AC6**: **OPEN** (Locked to ZBA-02, ZBA-04, ZBA-05)
+- **AC4**: **BLOCKED** (Locked to ZBA-01; requires human-controlled zero-billing observation via HG-02)
+- **AC5**: **BLOCKED** (Firestore rules drafted; live/emulator execution pending HG-05)
+- **AC6**: **BLOCKED** (Locked to ZBA-02, ZBA-04, ZBA-05; requires user OAuth tokens via HG-03, HG-04, HG-05)
 - **AC7**: **OPEN** (Undergoing contradiction reconciliation across deliverables)
 - **AC8**: **OPEN** (Phase-2 handoff locked; awaits final Phase 1 gate)
 - **AC9**: **PASS** (Codebase diff verified: zero Phase 2–10 business logic implemented)
 - **AC10**: **OPEN** (Formula-locked: requires all AC and ZBA items PASS)
-- **AC11**: **OPEN** (Locked to ZBA-01 live deployment proof)
-- **AC12**: **OPEN** (Locked to ZBA-01..07)
-- **AC13**: **OPEN** (Downgraded per runtime dependency inspection)
+- **AC11**: **BLOCKED** (Locked to ZBA-01 live deployment proof via HG-02)
+- **AC12**: **BLOCKED** (Locked to ZBA-01..07; awaits resolution of human gates HG-02..05)
+- **AC13**: **OPEN** (Runtime dependency inspection: production decoupling from Express needed)
 - **AC14**: **PASS** (R7 preserved as open Decision Gate HG-07 without invented accounting semantics)
-- **AC15**: **OPEN** (Meta-audit in progress)
-- **AC16**: **OPEN** (Downgraded pending formal core-without-Gemini registry entry)
-- **AC17**: **OPEN** (Iframe sandbox designed; live hostile test pending)
-- **ZBA-01**: **OPEN** (Awaiting HG-02)
-- **ZBA-02**: **OPEN** (Awaiting HG-05)
-- **ZBA-03**: **OPEN** (Awaiting HG-05)
-- **ZBA-04**: **OPEN** (Awaiting HG-03)
-- **ZBA-05**: **OPEN** (Awaiting HG-04)
-- **ZBA-06**: **OPEN** (Core independence verified; pending formal registry row)
-- **ZBA-07**: **OPEN** (Awaiting ZBA-01..06)
+- **AC15**: **PASS** (Meta-audit completed: AC1, AC9, AC14 independently verified with concrete evidence)
+- **AC16**: **OPEN** (Optional/dev-time classification established; formal core-without-Gemini automated test pending)
+- **AC17**: **OPEN** (Iframe sandbox designed; live hostile penetration tests pending)
+- **ZBA-01**: **BLOCKED** (Awaiting HG-02: Firebase Hosting deployment on zero-billing project)
+- **ZBA-02**: **BLOCKED** (Awaiting HG-05: Firebase Auth live sign-in & deterministic role mapping)
+- **ZBA-03**: **BLOCKED** (Awaiting HG-05: Firestore emulator/live allowed/denied rules execution)
+- **ZBA-04**: **BLOCKED** (Awaiting HG-03: Google Drive OAuth consent & file operations)
+- **ZBA-05**: **BLOCKED** (Awaiting HG-04: Gmail OAuth consent & interactive send test)
+- **ZBA-06**: **OPEN** (Core independence verified; formal automated test registration pending)
+- **ZBA-07**: **BLOCKED** (Derived end-to-end invariant; awaits resolution of upstream gates HG-02..05)
+
+### Status Summary Counts
+- **PASS**: 4 (AC1, AC9, AC14, AC15)
+- **OPEN**: 9 (AC2, AC3, AC7, AC8, AC10, AC13, AC16, AC17, ZBA-06)
+- **BLOCKED**: 11 (AC4, AC5, AC6, AC11, AC12, ZBA-01, ZBA-02, ZBA-03, ZBA-04, ZBA-05, ZBA-07)
+- **FAIL**: 0
+- **NOT STARTED**: 0
+- **TOTAL**: 24 items (17 AC + 7 ZBA)

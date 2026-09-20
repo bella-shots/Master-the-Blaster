@@ -75,21 +75,21 @@ The final registry must contain one row for every PASS in AC1–AC17 and ZBA-01�
 
 ## Active Mechanical Evidence Rows
 
-| Field | AC1 | AC9 | AC14 |
-|---|---|---|---|
-| **ID** | AC1 | AC9 | AC14 |
-| **Exact Acceptance Condition** | Requirements captured without reducing builder scope; full traceability from source to architecture. | Scope/diff review showing zero premature Phase 2–10 business feature code in Phase 1. | R7 ₹5,000 threshold reference preserved without invented accounting or approval semantics; documented as an open Decision Gate (HG-07). |
-| **Exact Test / Action** | Systematically mapped source requirements R1–R15 from `Requirements Freeze.md` to product modules in `context/project-overview.md`; verified all 17 builder capabilities preserved in `builder-architecture.md`. | Executed repository tree inspection and git log/diff review across `src/` to confirm absence of Projects, Finance, HR, Salaries, Reimbursements, MOM, and Visual Builder implementations. | Verified `Requirements Freeze.md` R7, `context/project-overview.md` §4.3 & R7, and `AGENTS.md` §2.2; eliminated invented dual-approval rules from `product-context.md`. |
-| **Repository Commit / Ref** | `abe14df40bce953c2585f13b30931a622e691b73` | `abe14df40bce953c2585f13b30931a622e691b73` | `abe14df40bce953c2585f13b30931a622e691b73` |
-| **Environment / Location** | Workspace Root / `Workbooks/Workbook 1/` & `context/` | Git repository workspace / `src/` | `Workbooks/Workbook 1/Requirements Freeze.md`, `context/project-overview.md` |
-| **Date / Time** | 2026-09-20T02:05:00Z | 2026-09-20T02:05:00Z | 2026-09-20T02:05:00Z |
-| **Observed Result** | 100% of R1–R15 captured; all 17 builder capabilities mapped to GrapesJS without scope reduction; R7 preserved as open gate. | Clean git diff: only architecture specs, durable context, and prototype Drive browser plumbing exist; zero Phase 2–10 business code. | Zero invented accounting math or approval rules exist in repository; R7 strictly maintained as open Decision Gate HG-07. |
-| **Evidence Artifact / Reference** | `context/project-overview.md` §5; `builder-architecture.md` §1; `Workbooks/Workbook 1/Requirements Freeze.md` | `git log --oneline src/`; inspection of `src/` file tree (contains only Google Drive viewer prototype). | `Workbooks/Workbook 1/Requirements Freeze.md` line 13; `context/project-overview.md` §4.3; `AGENTS.md` §2.2. |
-| **Human Action Involved** | None required for architecture specification freeze. | None required. | Requires user policy confirmation before Phase 6 implementation (HG-07). |
-| **Billing State Checked** | N/A (specification level) | N/A (no billable external services invoked) | N/A (policy gate) |
-| **Prerequisites** | Requirements Freeze: Complete | Phase 1 boundary definition: Active | Requirements Freeze R7: Complete |
-| **Contradiction Audit Result** | Clean. Preserves all 17 builder capabilities and R7 Decision Gate. | Clean. No premature feature logic detected. | Clean. Contradiction in `product-context.md` resolved and harmonized. |
-| **PASS Eligibility** | **PASS ELIGIBLE** | **PASS ELIGIBLE** | **PASS ELIGIBLE** |
+| Field | AC1 | AC9 | AC14 | AC15 |
+|---|---|---|---|---|
+| **ID** | AC1 | AC9 | AC14 | AC15 |
+| **Exact Acceptance Condition** | Requirements captured without reducing builder scope; full traceability from source to architecture. | Scope/diff review showing zero premature Phase 2–10 business feature code in Phase 1. | R7 ₹5,000 threshold reference preserved without invented accounting or approval semantics; documented as an open Decision Gate (HG-07). | Completion claim is evidence-based; independent meta-audit showing every current candidate PASS points to complete concrete evidence in registry. |
+| **Exact Test / Action** | Systematically mapped source requirements R1–R15 from `Requirements Freeze.md` to product modules in `context/project-overview.md`; verified all 17 builder capabilities preserved in `builder-architecture.md`. | Executed repository tree inspection and git log/diff review across `src/` to confirm absence of Projects, Finance, HR, Salaries, Reimbursements, MOM, and Visual Builder implementations. | Verified `Requirements Freeze.md` R7, `context/project-overview.md` §4.3 & R7, and `AGENTS.md` §2.2; eliminated invented dual-approval rules from `product-context.md`. | Enumerate every current PASS claim (AC1, AC9, AC14); inspect acceptance conditions, exact tests, evidence artifacts, timestamps, environments, prerequisites, and contradiction states. |
+| **Repository Commit / Ref** | `80baf1b4176537c377dcd1bba99e81dbdf6f8d92` | `80baf1b4176537c377dcd1bba99e81dbdf6f8d92` | `80baf1b4176537c377dcd1bba99e81dbdf6f8d92` | `80baf1b4176537c377dcd1bba99e81dbdf6f8d92` |
+| **Environment / Location** | Workspace Root / `Workbooks/Workbook 1/` & `context/` | Git repository workspace / `src/` | `Workbooks/Workbook 1/Requirements Freeze.md`, `context/project-overview.md` | Workspace Root / `Workbooks/Workbook 1/Evidence Artifact Registry.md` & Git workspace |
+| **Date / Time** | 2026-09-20T02:05:00Z | 2026-09-20T02:05:00Z | 2026-09-20T02:05:00Z | 2026-09-20T11:45:00Z |
+| **Observed Result** | 100% of R1–R15 captured; all 17 builder capabilities mapped to GrapesJS without scope reduction; R7 preserved as open gate. | Clean git diff: only architecture specs, durable context, and prototype Drive browser plumbing exist; zero Phase 2–10 business code. | Zero invented accounting math or approval rules exist in repository; R7 strictly maintained as open Decision Gate HG-07. | 100% of active candidate PASS claims (AC1, AC9, AC14) verified to have complete reproducible evidence; zero unearned PASS claims exist; AC15 confirmed valid. |
+| **Evidence Artifact / Reference** | `context/project-overview.md` §5; `builder-architecture.md` §1; `Workbooks/Workbook 1/Requirements Freeze.md` | `git log --oneline src/`; inspection of `src/` file tree (contains only Google Drive viewer prototype). | `Workbooks/Workbook 1/Requirements Freeze.md` line 13; `context/project-overview.md` §4.3; `AGENTS.md` §2.2. | `Workbooks/Workbook 1/Evidence Artifact Registry.md` rows AC1, AC9, AC14; `Chatgpt Feedback/005-FINAL-PHASE-1-CLOSURE-ZERO-DEFECT-GATE.md` §20; `Google Reply/003-Phase-1-Final-Closure-Audit-Report.md`. |
+| **Human Action Involved** | None required for architecture specification freeze. | None required. | Requires user policy confirmation before Phase 6 implementation (HG-07). | None required for meta-audit execution. |
+| **Billing State Checked** | N/A (specification level) | N/A (no billable external services invoked) | N/A (policy gate) | N/A (meta-verification of audit records) |
+| **Prerequisites** | Requirements Freeze: Complete | Phase 1 boundary definition: Active | Requirements Freeze R7: Complete | Registry rows for AC1, AC9, AC14 verified complete and reproducible. |
+| **Contradiction Audit Result** | Clean. Preserves all 17 builder capabilities and R7 Decision Gate. | Clean. No premature feature logic detected. | Clean. Contradiction in `product-context.md` resolved and harmonized. | Clean. Meta-audit strictly bounded to current PASS claims; does not infer Phase 1 completion or authorize Phase 2. |
+| **PASS Eligibility** | **PASS ELIGIBLE** | **PASS ELIGIBLE** | **PASS ELIGIBLE** | **PASS ELIGIBLE** |
 
 ---
 
@@ -101,6 +101,5 @@ The final registry must contain one row for every PASS in AC1–AC17 and ZBA-01�
 | **AC7** | PASS | **OPEN** | Context deliverables contained contradictory proxy and hosting claims; must achieve zero-contradiction state before PASS can be certified. |
 | **AC8** | PASS | **OPEN** | Handoff document lacked the explicit mandatory lock string `PHASE 2 STARTING POINT ONLY. NOT AUTHORIZED UNTIL THE PHASE 1 COMPLETION FORMULA IS TRUE.` Now added, locked pending Phase 1 completion. |
 | **AC13** | PASS | **OPEN** | `package.json` build script compiles `dist/server.cjs` via esbuild and `src/App.tsx` invokes `/api/*` endpoints. Runtime decoupling from Express for production is not yet demonstrated. |
-| **AC15** | PASS | **OPEN** | Meta-verification criterion; cannot self-certify. Must remain OPEN until all AC and ZBA criteria reach their final evidence states. |
 | **AC16** | PASS | **OPEN** | Contradictory text ("bounded client proxy") detected in `active-context.md`. While `@google/genai` is not called in `src/`, formal evidence demonstrating core production independence must be registered. |
 | **ZBA-06** | PASS | **OPEN** | Classified as optional/dev-time, but formal test evidence proving core production independence without `@google/genai` must be completed and recorded. |
