@@ -1,0 +1,95 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    function hasRole(role) {
+      return isAuthenticated() && getUserData().role == role;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && (getUserData().role == 'admin' || getUserData().role == 'super_admin');
+    }
+
+    function isFinance() {
+      return isAuthenticated() && (getUserData().role == 'finance' || isAdmin());
+    }
+
+    // Users collection: All authenticated users can read basic profile; only admin can set roles
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
+      allow update: if isAuthenticated() && (isAdmin() || (request.auth.uid == userId && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['role'])));
+      allow delete: if isAdmin();
+    }
+
+    // Projects: Members and Admins can access
+    match /projects/{projectId} {
+      allow read: if isAuthenticated();
+      allow create, update: if isAuthenticated() && (isAdmin() || resource.data.leadId == request.auth.uid || request.resource.data.leadId == request.auth.uid);
+      allow delete: if isAdmin();
+    }
+
+    // Tasks
+    match /tasks/{taskId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // Expenses: Finance and Admins have full access; Project Leads can log project expenses
+    match /expenses/{expenseId} {
+      allow read: if isAuthenticated();
+      allow create, update, delete: if isFinance();
+    }
+
+    // Reimbursements: Employees create their own; Finance/Admin review & settle
+    match /reimbursements/{reimbursementId} {
+      allow read: if isAuthenticated() && (resource.data.employeeId == request.auth.uid || isFinance());
+      allow create: if isAuthenticated() && request.resource.data.employeeId == request.auth.uid;
+      allow update: if isAuthenticated() && isFinance();
+      allow delete: if isAdmin();
+    }
+
+    // Salaries: Strictly restricted to Finance, Admin, or the employee reading their own doc
+    match /salaries/{salaryId} {
+      allow read: if isAuthenticated() && (isFinance() || resource.data.employeeId == request.auth.uid);
+      allow write: if isFinance();
+    }
+
+    // Investments: Strictly restricted to Admin and Super Admin
+    match /investments/{investmentId} {
+      allow read, write: if isAdmin();
+    }
+
+    // Minutes of Meeting (MOM): Authenticated read; creator/admin update
+    match /moms/{momId} {
+      allow read: if isAuthenticated();
+      allow create, update: if isAuthenticated();
+      allow delete: if isAdmin();
+    }
+
+    // Notes
+    match /notes/{noteId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // Builder Pages: Public can read published pages; only editors/admins can write
+    match /pages/{pageId} {
+      allow read: if resource.data.status == 'published' || isAuthenticated();
+      allow write: if isAuthenticated() && (isAdmin() || getUserData().role == 'project_lead');
+    }
+
+    // Builder Components / Symbols
+    match /builder_components/{componentId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && (isAdmin() || getUserData().role == 'project_lead');
+    }
+  }
+}

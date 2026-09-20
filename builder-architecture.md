@@ -17,7 +17,7 @@ The visual website builder is **NOT** a simple block list or markdown previewer.
 | **5** | **Typography & Styling** | Property inspector | Visual panels for font family, size, weight, line-height, text color, alignment, spacing (padding/margin), backgrounds, borders, shadows. |
 | **6** | **Animations & Interactions** | Motion engine | Enter animations (fade, slide up), hover transformations, smooth scroll anchors, modal triggers. |
 | **7** | **Custom CSS** | Code editor & style injector | Scoped custom CSS editor per element (`#element-id { ... }`) plus global page custom CSS. |
-| **8** | **Custom JavaScript** | Script sandbox / event engine | Sandboxed event handlers (`onClick`, `onScroll`, `onMount`) executed safely without `eval`. |
+| **8** | **Custom JavaScript** | Sandboxed execution / real isolation boundary | Untrusted custom JS executed inside an isolated iframe sandbox (`<iframe sandbox="allow-scripts">` without `allow-same-origin`). Explicit threat model: isolates scripts from parent-window cookies, localStorage, session tokens, and Firestore Auth state. |
 | **9** | **Reusable Components** | Symbol library | Save any element or container tree as a reusable block in `/builder_components` (e.g., Header, Footer, Hero, CTA). |
 | **10** | **Pages & Routing** | Multi-page manager | Create, rename, clone, and delete pages; configure URL slug, SEO title, and meta description. |
 | **11** | **Templates & Themes** | Theme manager | Preset color palettes, font pairings, and pre-built starter page templates. |

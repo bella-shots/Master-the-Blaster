@@ -60,11 +60,9 @@ Target scale: ~20 company users. 7 distinct roles are defined:
 
 ### 4.3 Module 3: Finance & ₹5,000 Out-of-Pocket Policy
 - **Expense Logging**: Category (Travel, Software, Supplies, Meals, Marketing), Amount, Receipt (Google Drive upload), Date, Payer.
-- **Out-of-Pocket Reimbursements**:
-  - Employees submit monthly claims with receipts.
-  - **₹5,000 Policy Logic**:
-    - If total claim ≤ ₹5,000: Tagged as "Standard Allowance", routes directly to Finance for single-step settlement.
-    - If total claim > ₹5,000: Tagged as "Policy Escalation", requires explicit Dual Approval (Finance + Admin/Super Admin) with mandatory justification.
+- **Out-of-Pocket Reimbursements & ₹5,000 Policy Gate (R7)**:
+  - Employees submit monthly claims with receipts stored in Google Drive.
+  - **₹5,000 Decision Gate (HG-07)**: The ₹5,000 threshold reference is preserved. Specific accounting semantics (single vs dual approval escalation, allowance vs reimbursement cap, and salary settlement integration) remain an open Decision Gate subject to written user policy sign-off; no accounting rules are silently invented.
 - **Salary Ledger**: Admin/Finance only. Monthly salary due tracking, advance payments, carry-forward unpaid balances, automated payslip summary export.
 - **Investment Ledger**: Admin/Super Admin only. Investor name, principal amount, transaction date, maturity/return date, agreed ROI, payout status.
 

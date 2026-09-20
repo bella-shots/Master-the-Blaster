@@ -9,26 +9,29 @@
 ## 1. Read Order & Mandatory First Steps
 Every AI Studio session or turn MUST read files in the following order before making any changes:
 1. `AGENTS.md` (this file — operational rules, execution protocol, human gates)
-2. `context/progress-tracker.md` (active phase, completed units, next planned unit)
-3. `context/project-overview.md` (authoritative product requirements, scope boundaries)
-4. `context/architecture-context.md` (system architecture, ADRs, ₹0 cost invariants)
-5. `context/ui-context.md` (visual layout, design tokens, navigation, responsive behavior)
-6. `builder-architecture.md` (full visual builder specification, 17 required capabilities)
-7. `data-dictionary.md` (all Firestore collection schemas and entity definitions)
+2. `context/progress-tracker.md` (active phase, completed units, next planned unit, gate status)
+3. `Verification Evidence Protocol.md` (authoritative evidence ledger for AC1–AC17 and ZBA-01–ZBA-07)
+4. `context/project-overview.md` (authoritative product requirements, scope boundaries)
+5. `context/architecture-context.md` (system architecture, ADRs, ₹0 cost invariants)
+6. `context/ui-context.md` (visual layout, design tokens, navigation, responsive behavior)
+7. `builder-architecture.md` (full visual builder specification, 17 required capabilities)
+8. `data-dictionary.md` (all Firestore collection schemas and entity definitions)
 
 ---
 
 ## 2. Core Operational Commandments
 
-### 2.1 One-Unit Execution & Verification
-- Work on strictly **one feature unit** or phase at a time.
-- Never skip phases or implement business features ahead of their defined phase.
+### 2.1 Evidence-First Verification & No Self-Scoring
+- **PASS is an evidence state, not an opinion.**
+- An acceptance criterion or ZBA proof item may be marked **PASS** ONLY when the condition was actually tested and reproducible evidence is recorded in `Verification Evidence Protocol.md`.
+- Documentation, architectural prose, source-code presence, package installation, or local compilation do NOT constitute proof of integration or deployment. If evidence is missing, the status **MUST remain OPEN**.
+- Work on strictly **one feature unit** at a time. Never skip phases or implement business features ahead of their defined phase.
 - Always run `lint_applet` and `compile_applet` after edits. Never leave the applet in a broken compilation state.
 
-### 2.2 No-Guessing Rule
+### 2.2 No-Guessing & Decision Gates Rule
 - Never assume database schemas, environment variables, or external API contracts.
 - Consult `data-dictionary.md` for schemas and `.env.example` for environment variables.
-- If a requirement is ambiguous, check the authoritative workbooks in `/data/` or consult the user at an official Human Gate.
+- **R7 / ₹5,000 Reimbursement Policy**: Retain the ₹5,000 threshold reference, but do NOT invent final accounting, allowance, extra-line-item, approval or salary-settlement semantics. Those remain an open **Decision Gate (HG-07)** until explicitly confirmed by the user.
 
 ### 2.3 Strict ₹0 Additional Cost Invariant & Zero-Billing Architecture Proof
 - **PROHIBITED MANDATORY DEPENDENCIES**:
@@ -40,21 +43,22 @@ Every AI Studio session or turn MUST read files in the following order before ma
   - Paid Email services (SendGrid, Resend, Postmark — use user-authorized Gmail API instead).
   - Paid visual editor plugins or SaaS embeds.
 - **ZERO-BILLING ARCHITECTURE PROOF (ZBA-01 to ZBA-07)**:
-  - ZBA-01: Firebase Hosting static SPA (Spark/no-billing eligible, no credit card).
-  - ZBA-02: Firebase Auth (Google sign-in, role mapping in Firestore `/users`).
-  - ZBA-03: Firestore + Security Rules (client direct access, role-enforced rules).
-  - ZBA-04: Google Drive API (OAuth client-side token, binary assets stored in Drive).
-  - ZBA-05: Gmail API (interactive user-authorized MOM send vs unattended limitation documented).
-  - ZBA-06: Gemini AI (server-side in AI Studio dev, optional/bounded in static client).
-  - ZBA-07: End-to-end invariant (every mandatory production dependency remains on no-billing path).
+  - **ZBA-01**: Firebase Hosting static SPA (candidate; local build succeeds to `dist/`; live deploy tracked under HG-02).
+  - **ZBA-02**: Firebase Auth (Google sign-in, role mapping in Firestore `/users`; live sign-in tracked under HG-05).
+  - **ZBA-03**: Firestore + Security Rules (`firestore.rules` drafted; emulator/controlled tests tracked under HG-05).
+  - **ZBA-04**: Google Drive API (OAuth client-side token, binary assets in Drive; live upload tracked under HG-03).
+  - **ZBA-05**: Gmail API (interactive user-authorized MOM dispatch from browser using organizer's OAuth token; tracked under HG-04).
+  - **ZBA-06**: Gemini AI (classified as **Optional / Dev-Time Enhancement**; core app operates 100% without AI in production, eliminating mandatory server/billing dependency).
+  - **ZBA-07**: End-to-end invariant (derived from ZBA-01..06; remains OPEN until all dependencies pass).
 - **CRITICAL SERVER.TS DISPOSITION**:
   - Retain existing Express/`server.ts` temporarily during AI Studio development container execution.
   - Do NOT assume Express is a mandatory production backend; ensure client builds to `dist/` as a static SPA compatible with Firebase Hosting Spark tier.
 - If any service or tool asks for billing activation or credit card: **STOP IMMEDIATELY**.
 
-### 2.4 The Full Visual Website Builder Standard (Non-Negotiable)
+### 2.4 The Full Visual Website Builder Standard & Security Boundary
 - The visual builder requirement is **NEVER** to be downgraded to a block-only or markdown editor.
-- Use a mature, 100% open-source engine (e.g., GrapesJS or high-capacity React drag-and-drop tree engine) configured to deliver all 17 capabilities:
+- Use a mature, 100% open-source engine (e.g., GrapesJS, BSD-3-Clause) configured to deliver all 17 capabilities.
+- **Real JavaScript Security Sandbox**: Custom user scripts run inside an isolated iframe sandbox (`<iframe sandbox="allow-scripts">` without `allow-same-origin`). A `Function()` constructor or `eval()` scope is strictly forbidden as a security sandbox.
   1. Drag & Drop free placement & reordering
   2. Arbitrary/nested container layouts (sections, grids, flex rows/cols, infinite nesting)
   3. Interactive element resizing

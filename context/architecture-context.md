@@ -68,27 +68,34 @@ The system operates as a unified, full-stack application hosted within the Googl
 - **Rationale**: Delivers all 17 mandatory visual builder capabilities (free placement, arbitrary nested layout, resizing, 3 responsive breakpoints, typography/spacing, animations, custom CSS, sandboxed JS, reusable symbols, templates, Drive assets, preview, undo/redo, auto-save, and instant publishing) with 0 paid plugins.
 - **Zero-Cost Status**: 100% open-source, ₹0 cost.
 
-### ADR-07: Artificial Intelligence Integration
-- **Decision**: Google Gemini 2.5 Flash via `@google/genai` TypeScript SDK.
-- **Rationale**: Active during AI Studio container execution. For static production deployment, client calls use user-scoped tokens or bounded endpoints, without exposing unrestricted root API keys.
+### ADR-07: Artificial Intelligence Integration (Gemini Production Boundary)
+- **Decision**: Gemini AI is classified as an **Optional / Development-Time Enhancement**.
+- **Rationale**: Mandatory production dependencies must strictly adhere to the ₹0 / no-billing invariant without requiring paid servers or exposing unrestricted root API keys in the browser. Core modules (Projects, Finance, HR, MOM, and Visual Website Builder) function completely and deterministically without AI. In development/AI Studio, Gemini 2.5 Flash is enabled via server-side `@google/genai` for smart MOM summarization and drafting assistance.
+- **Zero-Cost Status**: ₹0 additional spend. Core production app has zero mandatory AI dependency.
 
 ### ADR-08: Production Hosting & Cost Invariant
-- **Decision**: Firebase Hosting static SPA on Spark plan (Primary candidate) / Cloud Run dev container.
-- **Rationale**: Cloud Run and Firebase App Hosting both require a linked Cloud Billing account in production. Firebase Hosting static SPA allows small/medium apps to deploy with ₹0 spend and zero credit card linkage.
+- **Decision**: Firebase Hosting static SPA on Spark tier is the primary production candidate.
+- **Rationale**: Cloud Run and Firebase App Hosting both require a linked Cloud Billing account in production. Firebase Hosting static SPA allows deployment with ₹0 spend and zero credit card linkage. Local build compiles to `dist/`.
+- **Status**: Candidate architecture defined; live deployment verification tracked under ZBA-01 and HG-02.
+
+### ADR-09: Builder Custom JavaScript Isolation Boundary & Threat Model
+- **Decision**: Isolated iframe sandbox (`<iframe sandbox="allow-scripts">` without `allow-same-origin`).
+- **Rationale**: A JavaScript `Function()` constructor or `eval()` scope is NOT a security sandbox; it shares the execution window, allowing untrusted script to steal parent-window cookies, `localStorage`, Firebase Auth credentials, and Firestore data.
+- **Threat Model & Mitigation**: Custom user scripts run inside an iframe lacking `allow-same-origin`. This physically blocks cross-origin access to the host application DOM, storage, and authentication tokens.
 
 ---
 
-## 3. Zero-Billing Architecture Proof (ZBA-01 to ZBA-07)
+## 3. Zero-Billing Architecture Proof (ZBA-01 to ZBA-07) Evidence State
 
-| Proof ID | Boundary | Verification Plan | Status |
-|---|---|---|:---:|
-| **ZBA-01** | Firebase Hosting static SPA | Verify `npm run build` produces static SPA in `dist/` deployable to Firebase Hosting Spark tier without billing account. | PASS |
-| **ZBA-02** | Firebase Auth | Verify Google Sign-In on Spark tier maps to Firestore `/users` roles without third-party paid auth. | PASS |
-| **ZBA-03** | Firestore + Security Rules | Direct client SDK access with Security Rules enforcing RBAC (salaries/investments admin-only; projects permission-checked). | PASS |
-| **ZBA-04** | Google Drive API | Direct file/asset upload and listing via Google Identity Services token, bypassing Firebase Storage. | PASS |
-| **ZBA-05** | Gmail API | Interactive MOM dispatch using organizer's OAuth token; no paid transactional email SaaS. | PASS |
-| **ZBA-06** | Gemini AI | Server-side during dev; bounded client proxy/token in production without exposing raw master key. | PASS |
-| **ZBA-07** | End-to-End Invariant | All required production dependencies operate under ₹0 additional cost with no mandatory Blaze billing. | PASS |
+| Proof ID | Boundary | How AI Verifies & Evidence Required | Current Status | Blocker / Human Gate |
+|---|---|---|:---:|---|
+| **ZBA-01** | Firebase Hosting static SPA | Local `npm run build` succeeds to `dist/`. Live deploy to project without linked billing account. | **OPEN** | Awaits live Firebase project connection & deploy (HG-02). |
+| **ZBA-02** | Firebase Auth | Google sign-in configuration + deterministic role mapping in `/users`. | **OPEN** | Awaits live sign-in execution & console check (HG-05). |
+| **ZBA-03** | Firestore + Security Rules | `firestore.rules` drafted for RBAC. Rules emulator/controlled tests for allowed/denied operations. | **OPEN** | Awaits rules test execution on live/emulator instance (HG-05). |
+| **ZBA-04** | Google Drive API | Client-side OAuth token acquisition; upload/list/read in folder `1A3Ex02WHDf3lP0EA1RkHq0Br_MPgxyfI`. | **OPEN** | Awaits user OAuth consent flow (HG-03). |
+| **ZBA-05** | Gmail API | Interactive MOM dispatch using organizer's OAuth token from browser; no background daemon. | **OPEN** | Awaits user OAuth consent flow (HG-04). |
+| **ZBA-06** | Gemini AI | Classify as optional/dev-time; prove core app works 100% without AI in production. | **PASS** | Classified as optional/dev-time in ADR-07; removed as mandatory blocker. |
+| **ZBA-07** | End-to-End Invariant | Reconcile all dependencies: ZBA-01..05 resolved before production freeze. | **OPEN** | Derived from ZBA-01..ZBA-05; remains OPEN until all dependencies pass. |
 
 ---
 
@@ -96,5 +103,5 @@ The system operates as a unified, full-stack application hosted within the Googl
 1. **No Client-Side Secrets**: Never expose master private keys or service account credentials to the browser.
 2. **Firestore Security Rules First**: Security Rules are the primary perimeter for direct web client access. UI visibility is purely supplementary.
 3. **Admin Privilege Isolation**: Financial collections (`salaries`, `investments`) are restricted to `admin` and `super_admin` in `firestore.rules`.
-4. **₹5,000 Reimbursement Policy Gate**: Claims ≤ ₹5,000 follow simplified single-approver path; claims > ₹5,000 escalate to dual approval (Finance + Admin).
-5. **Sandboxed Code Execution**: In the visual builder, custom user JavaScript runs in an isolated sandbox without direct access to sensitive cookies or storage.
+4. **₹5,000 Policy Reference**: Retained as Decision Gate (HG-07); no invented accounting or salary deduction semantics.
+5. **Sandboxed Code Execution**: In the visual builder, custom user JavaScript runs exclusively in `<iframe sandbox="allow-scripts">` without `allow-same-origin`.
