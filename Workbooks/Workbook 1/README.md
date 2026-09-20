@@ -1,11 +1,19 @@
 # Workbook 1 — Phase 1 Product Architecture
 
-This folder contains the revised Phase 1 workbook, with each Excel sheet converted into a separate Markdown file.
+This folder contains the revised Phase 1 execution workbook, with each Excel sheet represented as a separate Markdown file.
 
 ## Source workbook
+
 `Phase_1_Product_Architecture_Google_AI_Studio_AUTONOMOUS_REVISED.xlsx`
 
-## Sheets
+## Revision
+
+**Verification Revision 2**
+
+This revision adds an evidence-first verification contract. Google AI Studio must not mark acceptance criteria or zero-billing proof items PASS without reproducible evidence.
+
+## Sheets / execution documents
+
 1. [START HERE](START HERE.md)
 2. [Autonomous Control](Autonomous Control.md)
 3. [Requirements Freeze](Requirements Freeze.md)
@@ -19,3 +27,8 @@ This folder contains the revised Phase 1 workbook, with each Excel sheet convert
 11. [Stop Resume Protocol](Stop Resume Protocol.md)
 12. [AI Studio Master Prompt](AI Studio Master Prompt.md)
 13. [Playbook Alignment](Playbook Alignment.md)
+14. [Verification Evidence Protocol](Verification Evidence Protocol.md)
+
+## Critical rule
+
+Phase 1 is **not complete** unless AC1–AC17 and ZBA-01–ZBA-07 are all evidence-backed PASS. OPEN/FAIL/BLOCKED means Phase 1 remains incomplete.
