@@ -17,6 +17,7 @@ These files are separate from Workbook 1. They do **not** create a new Workbook 
 2. `002-PHASE-1-EVIDENCE-AUDIT.md` — execute the remaining Revision 4 acceptance/evidence audits; do not self-certify.
 3. `003-PHASE-1-COMPLETION-GATE.md` — perform the final completion formula and Phase 2 boundary audit only after the earlier instructions are satisfied.
 4. `004-PHASE-1-LEDGER-RECONCILIATION-AND-EVIDENCE-INTEGRITY.md` — repair the current status-ledger contradiction and independently validate every claimed PASS before any completion decision.
+5. `005-FINAL-PHASE-1-CLOSURE-ZERO-DEFECT-GATE.md` — final mechanical closure gate: reconcile OPEN/BLOCKED states, independently re-audit every PASS including AC15, re-run all seven final audits, enforce exact status-count consistency, and authorize Phase 2 only if the unchanged Revision 4 completion formula is objectively TRUE.
 
 ## Operating rule
 
