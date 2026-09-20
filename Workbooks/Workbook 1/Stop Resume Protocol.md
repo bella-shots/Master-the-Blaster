@@ -1,14 +1,14 @@
 # Stop Resume Protocol
 
-> Source: `Phase_1_Product_Architecture_Google_AI_Studio_AUTONOMOUS_REVISED.xlsx`
+> Source: `Phase_1_Product_Architecture_Google_AI_Studio_AUTONOMOUS_REVISED.xlsx` — Verification Revision 2
 
-| MANDATORY STOP / ASSISTANCE / RESUME PROTOCOL |  |  |  |  |  |  |
-| --- | --- | --- | --- | --- | --- | --- |
 | Situation | AI behavior | What AI must say | What user does | Exact resume phrase | AI after resume | Forbidden behavior |
-| Needs GitHub connection | STOP immediately. | I need one human action: connect/authorize GitHub in [exact UI]. I have completed [what is already done]. Success looks like [specific result]. | Complete the connection in the UI. | DONE — RESUME PHASE 1 | Re-check access, then continue from the paused step. | Do not claim GitHub is connected without verification. |
-| Needs Google OAuth | STOP immediately. | I need you to approve [specific Google permission]. I will not request or store your password/token in chat. | Approve OAuth consent. | DONE — RESUME PHASE 1 | Verify the granted scope and continue. | Do not ask for credentials in chat. |
-| Needs product decision | STOP immediately. | Decision required: [question]. Option A: [meaning]. Option B: [meaning]. I recommend [neutral implementation default if appropriate], but I will not assume it. | Choose/confirm decision. | RESUME PHASE 1 | Record decision, update context, continue. | Do not silently choose a consequential rule. |
-| Hits paid billing | STOP immediately. | This service is requesting billing: [service]. I have NOT enabled it. I can redesign to avoid it or you can explicitly authorize it. | Choose redesign or explicit billing approval. | REDESIGN — RESUME PHASE 1 / APPROVE BILLING — RESUME PHASE 1 | Follow the chosen path and document it. | Never enable billing autonomously. |
-| Tool unsupported | STOP only if no safe alternative is already documented. | [Capability] cannot be implemented with the selected tool as configured. Here is the smallest decision needed. | Approve documented alternative or provide access. | RESUME PHASE 1 | Update architecture decision and continue. | Do not invent a hidden dependency. |
-| Verification failure | Do not ask user unless human action is required. | Capture exact error, identify boundary, attempt focused correction, rerun verification. | Only act if requested by the exact human gate. | RESUME PHASE 1 if asked. | Continue corrective loop. | Do not restart whole project or broaden scope. |
-| Zero-billing proof blocked | STOP immediately. | Proof item [ZBA-ID] is OPEN/FAIL because [exact reason]. I have not enabled billing. I need [exact human action/decision]. | Complete the requested action or choose the documented architecture decision. | DONE — RESUME PHASE 1 / RESUME PHASE 1 | Re-run the affected proof item, update the matrix, and continue from the paused unit. | Do not claim the architecture is proven while a mandatory proof item is open. |
+| --- | --- | --- | --- | --- | --- | --- |
+| Needs GitHub connection | STOP | Exact UI path + success condition. | Complete connection in UI. | DONE — RESUME PHASE 1 | Re-check access and continue. | Do not claim connection without verification. |
+| Needs Google OAuth | STOP | Exact permission requested; never ask for password/token. | Approve OAuth. | DONE — RESUME PHASE 1 | Verify scope and continue. | No credentials in chat. |
+| Needs product/accounting decision | STOP | Exact question + interpretations. | Choose/confirm. | RESUME PHASE 1 | Record decision and re-run affected checks. | Do not silently choose consequential semantics. |
+| Hits paid billing | STOP | Service + exact billing request; confirm nothing was enabled. | Redesign or explicitly change invariant. | REDESIGN — RESUME PHASE 1 / CHANGE INVARIANT — RESUME PHASE 1 | Follow explicit choice. | Never enable billing autonomously. |
+| Verification evidence missing | **Do not mark PASS.** | Identify exact missing test/evidence and whether human action is needed. | Complete requested action if needed. | DONE — RESUME PHASE 1 | Re-run test and update evidence ledger. | Never substitute documentation for proof. |
+| Verification failure | Correct narrowly. | Exact error → affected boundary → correction → re-test. | Only act if human gate requires it. | RESUME PHASE 1 | Continue from failed unit. | Do not restart/broaden scope. |
+| Zero-billing proof OPEN/FAIL | STOP | ZBA ID + exact reason + evidence gap/failed condition. | Complete action or choose redesign. | DONE — RESUME PHASE 1 / RESUME PHASE 1 | Re-run affected ZBA item. | Never claim architecture proven while mandatory item is open. |
+| Contradictory context | STOP before Phase completion. | Identify files and exact contradiction. | Only decide if it is a genuine product/architecture choice. | RESUME PHASE 1 | Correct all affected context, then re-run consistency audit. | Do not leave conflicting authoritative statements. |
