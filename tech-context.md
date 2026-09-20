@@ -5,14 +5,13 @@
 ---
 
 ## 1. Runtime Environment & Port Constraints
-- **Platform**: Cloud Run sandboxed container.
-- **Port**: **Port 3000 ONLY**.
+- **Platform**: AI Studio sandboxed container (development); Firebase Hosting static SPA (production target).
+- **Port**: **Port 3000 ONLY** (AI Studio dev container routing).
 - **Host**: `0.0.0.0` (mandatory for container routing).
 - **Process Architecture**:
-  - Full-stack unified server: Express backend mounts Vite development middleware in dev, and serves static build assets in production.
-  - Development entry: `tsx server.ts`
-  - Production build: `vite build && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs`
-  - Production start: `node dist/server.cjs`
+  - Development entry: `tsx server.ts` (Express server hosts development Vite middleware in AI Studio container).
+  - Production build: `vite build` (generates static SPA in `dist/` for Firebase Hosting Spark tier). Note: `dist/server.cjs` is built during container builds but is NOT a mandatory production dependency under the ₹0 invariant.
+  - Production start (Container fallback only): `node dist/server.cjs`. Target production hosting is static SPA on Firebase Hosting Spark tier (zero billing).
 
 ---
 
@@ -24,15 +23,15 @@
 - **Icons**: Lucide React (`lucide-react`)
 - **Animations**: Motion (`motion/react`)
 - **Charts / Visuals**: Recharts (`recharts`), D3 (`d3`)
-- **Server Runtime**: Express (`express`, `@types/express`)
-- **AI SDK**: Google Gen AI TypeScript SDK (`@google/genai`)
+- **Development Server Runtime**: Express (`express`, `@types/express`) — development container artifact
+- **AI SDK**: Google Gen AI TypeScript SDK (`@google/genai`) — Optional / Dev-Time enhancement only; core app operates 100% without AI
 - **Database & Auth**: Firebase JS SDK (`firebase`)
 
 ---
 
 ## 3. Environment Variables (`.env.example`)
 ```env
-# Gemini API Key for server-side intelligence (MOM summaries, expense categorization)
+# Optional Gemini API Key for dev-time intelligence (core app functions 100% without AI)
 GEMINI_API_KEY=
 
 # Google OAuth / Firebase Configuration (Client-safe)

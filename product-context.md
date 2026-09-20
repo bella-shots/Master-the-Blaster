@@ -9,8 +9,8 @@ Deliver a comprehensive internal Master Company Website & Operations Platform fo
 1. **Projects Management**: Milestones, countdowns, member access, task boards, Excel spreadsheet ingestion.
 2. **Finance & Accounting**: Expense tracking, salary ledgers, carry-forward unpaid balances, investment registry.
 3. **Out-of-Pocket Reimbursements & ₹5,000 Policy Gate**:
-   - Claims ≤ ₹5,000: Standard approval path.
-   - Claims > ₹5,000: Escalated dual approval (Finance + Admin) required.
+   - ₹5,000 threshold reference is preserved.
+   - **Decision Gate (HG-07)**: Final accounting semantics (calculation mode, allowance treatment, any additional ₹5,000 line item, approval escalation, and salary settlement) remain strictly an open decision gate. No accounting formulas or dual-approval semantics may be invented without explicit user confirmation.
 4. **Human Resources (HR)**: Employee directory, designations, contact info, role bindings.
 5. **Minutes of Meeting (MOM)**: Structured notes, decisions, action items, automated Gmail API distribution.
 6. **Full Visual Website Builder**: Genuinely flexible drag/drop canvas, nested layouts, responsive controls, custom CSS/JS, templates, asset management via Google Drive, live page publishing.

@@ -4,72 +4,60 @@
 
 Repository: `bella-shots/Master-the-Blaster`
 
-HEAD inspected before this control update:
+HEAD inspected during this Revision 4 audit:
 
-`124c166ca2dbbda543432a0d594808885fac37e2`
+`eaf34bc9ee9adfeffcbbfcaae484a0d9228807d9`
 
 Commit message:
 
-`docs(workbook1): enforce Revision 3 mechanical verification state machine and downgrade matrix`
+`docs(workbook1): add Revision 4 Google AI Studio execution prompt`
 
-## Known control-layer finding
+## Revision 4 Mechanical Audit Execution Findings
 
-The Revision 3 documents correctly require evidence-first verification and dependency propagation.
+1. **AC13 (server.ts)**:
+   - **Audit finding**: In `package.json`, `"build"` script bundles `server.ts` into `dist/server.cjs` via esbuild, and `"start"` script runs `node dist/server.cjs`. In `src/App.tsx`, lines 66, 204, and 250 invoke `/api/workspace-data-files` and `/api/upload-to-workspace`.
+   - **Status**: Downgraded to **OPEN**. `server.ts` is not yet cleanly decoupled from the production bundle or client prototype code.
 
-However, the repository still requires a fresh mechanical audit of actual implementation/runtime evidence before any existing PASS claim can be trusted.
+2. **AC15 (Independent PASS Audit)**:
+   - **Audit finding**: Previous turns marked AC15 PASS without an instantiated `Evidence Artifact Registry.md`. AC15 is a meta-verification criterion and cannot self-certify.
+   - **Status**: Downgraded to **OPEN**. Remains OPEN while the mechanical evidence ledger is populated and audited.
 
-## Mandatory re-audit targets
+3. **AC16 & ZBA-06 (Gemini Boundary)**:
+   - **Audit finding**: Contradictory text existed in `active-context.md` describing a "bounded client proxy in static production", which violates the zero-billing invariant and PASS eligibility criteria. While `@google/genai` is not invoked in `src/`, formal evidence demonstrating core production independence must be registered.
+   - **Status**: Downgraded to **OPEN**. Contradictory proxy phrasing removed; core-without-Gemini independence verification registered.
 
-The first execution after this baseline MUST specifically re-audit:
+4. **Contradiction Audit Resolutions**:
+   - **R7 / ₹5,000 policy**: Contradiction found in `product-context.md` (which invented a dual-approval rule > ₹5,000). Resolved and harmonized to match `Requirements Freeze.md` R7 and `context/project-overview.md` R7 (HG-07 open Decision Gate).
+   - **Gemini proxy wording**: Removed from `active-context.md` and `tech-context.md`.
+   - **Target production runtime**: Clarified in `tech-context.md` that target production environment is Firebase Hosting static SPA, with Express serving only as the development container runtime in AI Studio.
 
-### AC3
-Verify the actual builder engine exists in the repository, its license is evidenced, and all 17 capabilities are actually supported/mapped.
+5. **Phase-2 Lock**:
+   - Explicit lock enforced in `context/progress-tracker.md`, `active-context.md`, and all handoff documents:
+   - `PHASE 2 STARTING POINT ONLY. NOT AUTHORIZED UNTIL THE PHASE 1 COMPLETION FORMULA IS TRUE.`
 
-### AC13
-Verify `server.ts` against the real production dependency/runtime graph. Do not rely on the architectural classification alone.
+## Current Authoritative Baseline Statuses
 
-### AC15
-Enumerate every current PASS and prove its evidence record is complete. AC15 cannot self-certify.
-
-### AC16
-Verify Gemini's actual production dependency boundary. Optional/dev-time classification must be demonstrated through dependency/runtime/core-workflow evidence.
-
-### ZBA-06
-Apply the same evidence standard to Gemini. A classification statement alone is not a tested optional/dev-time proof.
-
-### AC17
-Run actual custom-JavaScript positive and hostile/negative isolation tests.
-
-### Phase boundary
-Verify that the Phase 2 handoff is descriptive only and that no Phase 2 implementation has been authorized or performed.
-
-## Expected conservative baseline
-
-Until the required tests and evidence exist, the following are expected to remain OPEN or BLOCKED rather than PASS:
-
-- AC3
-- AC4
-- AC5
-- AC6
-- AC10
-- AC11
-- AC12
-- AC13 if runtime proof is missing
-- AC15 if PASS-audit proof is missing
-- AC16 if Gemini independence proof is missing
-- AC17
-- ZBA-01
-- ZBA-02
-- ZBA-03
-- ZBA-04
-- ZBA-05
-- ZBA-06 if optional/dev-time proof is not actually tested
-- ZBA-07
-
-This is a verification baseline, not permission to force these statuses. Actual evidence controls the final state.
-
-## Phase 2 lock
-
-No Phase 2 implementation is authorized until the Phase 1 completion formula is TRUE.
-
-The existence of a Phase 2 handoff, roadmap, dependency list, or proposed first feature unit does not satisfy the Phase 1 gate.
+- **AC1**: **PASS** (Traceability verified in `Requirements Freeze.md` and `context/project-overview.md`; full 17 builder capabilities preserved)
+- **AC2**: **OPEN** (ADR harmonization underway)
+- **AC3**: **OPEN** (GrapesJS BSD-3-Clause identified; live capability tests belong to implementation)
+- **AC4**: **OPEN** (Locked to ZBA-01)
+- **AC5**: **OPEN** (Firestore rules drafted; live/emulator execution pending HG-05)
+- **AC6**: **OPEN** (Locked to ZBA-02, ZBA-04, ZBA-05)
+- **AC7**: **OPEN** (Undergoing contradiction reconciliation across deliverables)
+- **AC8**: **OPEN** (Phase-2 handoff locked; awaits final Phase 1 gate)
+- **AC9**: **PASS** (Codebase diff verified: zero Phase 2–10 business logic implemented)
+- **AC10**: **OPEN** (Formula-locked: requires all AC and ZBA items PASS)
+- **AC11**: **OPEN** (Locked to ZBA-01 live deployment proof)
+- **AC12**: **OPEN** (Locked to ZBA-01..07)
+- **AC13**: **OPEN** (Downgraded per runtime dependency inspection)
+- **AC14**: **PASS** (R7 preserved as open Decision Gate HG-07 without invented accounting semantics)
+- **AC15**: **OPEN** (Meta-audit in progress)
+- **AC16**: **OPEN** (Downgraded pending formal core-without-Gemini registry entry)
+- **AC17**: **OPEN** (Iframe sandbox designed; live hostile test pending)
+- **ZBA-01**: **OPEN** (Awaiting HG-02)
+- **ZBA-02**: **OPEN** (Awaiting HG-05)
+- **ZBA-03**: **OPEN** (Awaiting HG-05)
+- **ZBA-04**: **OPEN** (Awaiting HG-03)
+- **ZBA-05**: **OPEN** (Awaiting HG-04)
+- **ZBA-06**: **OPEN** (Core independence verified; pending formal registry row)
+- **ZBA-07**: **OPEN** (Awaiting ZBA-01..06)
