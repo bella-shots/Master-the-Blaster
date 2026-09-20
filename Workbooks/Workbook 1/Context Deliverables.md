@@ -1,9 +1,9 @@
 # Context Deliverables
 
-> Source: `Phase_1_Product_Architecture_Google_AI_Studio_AUTONOMOUS_REVISED.xlsx` — Verification Revision 2
+> **Revision 4 execution control applies.**
 
 | File | Must exist after Phase 1? | Purpose | Required contents for this app | AI behavior | Verification | Status |
-| --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- | --- |
 | agents.md | Yes | AI Studio execution entry point | Read order, phase protocol, stop/resume, no-guessing, one-unit execution, verification, progress updates. | Read first every session. | Exists and points to all required context/specs. | Not Started |
 | context/project-overview.md | Yes | Product truth | Modules, users, builder scope, cost invariant, scale, success criteria, open policy decisions. | Authoritative product definition. | Matches Requirements Freeze exactly. | Not Started |
 | context/architecture-context.md | Yes | System blueprint | Runtime, editor, DB, Auth, Drive, Gmail, hosting, client/server boundaries, permissions, zero-billing proof, Gemini boundary, custom-JS security boundary. | No technology without responsibility/evidence. | Cross-consistency audit passes. | Not Started |
@@ -13,3 +13,5 @@
 | context/progress-tracker.md | Yes | Living project state | Current phase, completed, in progress, next, decisions, open questions, gate status, exact resume point. | Update checkpoints. | Can resume without chat history. | Not Started |
 | context/feature-specs/README.md | Yes | Feature map | Phase 2–10 units/dependencies. | Do not implement future units in Phase 1. | Roadmap exists. | Not Started |
 | Verification Evidence Protocol.md | Yes | Evidence ledger | AC1–AC17 and ZBA-01–ZBA-07 evidence references, test commands/results, timestamps, human actions, billing state, open/failed items. | Never mark PASS without evidence. | Every PASS has reproducible evidence. | Not Started |
+| Evidence Artifact Registry.md | Yes | Mechanical evidence index | One row for every PASS with exact test, artifact, commit/ref, timestamp, prerequisites and contradiction result. | PASS requires a registry row. | Every PASS maps to a reproducible artifact. | Not Started |
+| Current Phase 1 Audit Baseline.md | Yes | Current verification baseline | Repository HEAD, known re-audit targets, conservative expected states and Phase-2 lock. | Read before execution and update after audit. | Baseline matches inspected repository. | Not Started |
