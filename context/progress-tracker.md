@@ -62,7 +62,7 @@
 ## 4. Phase 2 Handoff & Starting Actions
 > **MANDATORY PHASE-2 LOCK**:  
 > **PHASE 2 STARTING POINT ONLY. NOT AUTHORIZED UNTIL THE PHASE 1 COMPLETION FORMULA IS TRUE.**  
-> `Phase 1 Complete = (AC1..AC17 == PASS) ∧ (ZBA-01..ZBA-07 == PASS) ∧ (Unresolved Gates == 0)`
+> `PHASE_1_COMPLETE = (AC1..AC17 = PASS) AND (ZBA-01..ZBA-07 = PASS) AND (every PASS has complete evidence) AND (all final audits PASS) AND (no unresolved contradiction) AND (no consequential ambiguity silently invented) AND (Phase 2 boundary audit PASS)`
 
 - **Current Phase**: Phase 1 IN PROGRESS / LOCKED AT REVISION 4 AUDIT (Awaiting Human Gates HG-01, HG-02, HG-03, HG-04, HG-05, HG-07).
 - **Next Phase**: Phase 2 (AI Context & Project Foundation) — NOT AUTHORIZED.
