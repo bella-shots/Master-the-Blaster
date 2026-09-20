@@ -30,4 +30,4 @@ Strict ₹0 spend:
 - Auth: Firebase Authentication free tier (50k MAU).
 - File Storage: Google Drive API (Folder `1A3Ex02WHDf3lP0EA1RkHq0Br_MPgxyfI`).
 - Email Dispatch: Gmail API via user OAuth.
-- AI Logic: Gemini 2.5 Flash / Pro via server-side `@google/genai` SDK.
+- AI Logic: Gemini 2.5 Flash / Pro via `@google/genai` SDK (Optional / Dev-Time Enhancement only; core app operates 100% deterministically without AI; zero mandatory server or billing dependency).

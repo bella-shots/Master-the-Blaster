@@ -6,25 +6,38 @@ Repository: `bella-shots/Master-the-Blaster`
 
 HEAD inspected during this Revision 4 audit:
 
-`eaf34bc9ee9adfeffcbbfcaae484a0d9228807d9`
+`abe14df40bce953c2585f13b30931a622e691b73`
 
 Commit message:
 
-`docs(workbook1): add Revision 4 Google AI Studio execution prompt`
+`docs(feedback): index Phase 1 ledger integrity instruction`
 
-## Revision 4 Mechanical Audit Execution Findings
+## Feedback 004 Mechanical Audit Execution Findings
 
-1. **AC13 (server.ts)**:
-   - **Audit finding**: In `package.json`, `"build"` script bundles `server.ts` into `dist/server.cjs` via esbuild, and `"start"` script runs `node dist/server.cjs`. In `src/App.tsx`, lines 66, 204, and 250 invoke `/api/workspace-data-files` and `/api/upload-to-workspace`.
-   - **Status**: Downgraded to **OPEN**. `server.ts` is not yet cleanly decoupled from the production bundle or client prototype code.
+1. **Ledger Reconciliation**:
+   - **Audit finding**: `Workbooks/Workbook 1/Verification Evidence Protocol.md`, `Workbooks/Workbook 1/Acceptance Gate.md`, and `Workbooks/Workbook 1/Zero-Billing Architecture Proof.md` previously contained boilerplate "Not Started" placeholder statuses, creating a contradiction with `Current Phase 1 Audit Baseline.md`, `Evidence Artifact Registry.md`, `context/verification-evidence-protocol.md`, and `progress-tracker.md`.
+   - **Resolution**: Fully reconciled all status ledgers across Workbook 1. Authoritative status unified: 3 PASS (AC1, AC9, AC14), 14 OPEN (AC2–AC8, AC10–AC13, AC15–AC17), and 7 ZBA OPEN (ZBA-01–ZBA-07).
 
-2. **AC15 (Independent PASS Audit)**:
-   - **Audit finding**: Previous turns marked AC15 PASS without an instantiated `Evidence Artifact Registry.md`. AC15 is a meta-verification criterion and cannot self-certify.
-   - **Status**: Downgraded to **OPEN**. Remains OPEN while the mechanical evidence ledger is populated and audited.
+2. **Independent Validation of Current PASS Criteria**:
+   - **AC1 (Traceability & Builder Scope)**: Verified R1–R15 preserved; all 17 builder capabilities mapped to GrapesJS engine architecture in `builder-architecture.md`. **PASS**.
+   - **AC9 (No Premature Business Logic)**: Codebase diff and `src/` tree inspection confirms zero premature Phase 2–10 business logic (only prototype Drive viewer exists). **PASS**.
+   - **AC14 (R7 ₹5,000 Decision Gate)**: Verified R7 retained as an open Decision Gate (HG-07) without invented calculation mode, allowance, line-item, or approval semantics. **PASS**.
 
-3. **AC16 & ZBA-06 (Gemini Boundary)**:
-   - **Audit finding**: Contradictory text existed in `active-context.md` describing a "bounded client proxy in static production", which violates the zero-billing invariant and PASS eligibility criteria. While `@google/genai` is not invoked in `src/`, formal evidence demonstrating core production independence must be registered.
-   - **Status**: Downgraded to **OPEN**. Contradictory proxy phrasing removed; core-without-Gemini independence verification registered.
+3. **AC13 (server.ts / Production Boundary)**:
+   - **Audit finding**: `package.json` bundles `server.ts` into `dist/server.cjs` via esbuild, and `src/App.tsx` calls `/api/workspace-data-files` and `/api/upload-to-workspace`. Production decoupling from Express is not yet demonstrated.
+   - **Status**: Confirmed **OPEN**.
+
+4. **AC15 (Independent Meta-Audit)**:
+   - **Audit finding**: AC15 cannot self-certify. Only AC1, AC9, and AC14 have verified evidence artifacts.
+   - **Status**: Confirmed **OPEN**.
+
+5. **AC16 & ZBA-06 (Gemini Independence)**:
+   - **Audit finding**: `@google/genai` is not called in `src/` or `server.ts`. However, per Feedback 004 rules, absence from call path alone is insufficient without a formal executed independence test registered.
+   - **Status**: Confirmed **OPEN**.
+
+6. **AC17 (Custom-JS Security Boundary)**:
+   - **Audit finding**: Iframe sandbox architecture specified; live hostile access penetration tests are pending builder execution.
+   - **Status**: Confirmed **OPEN**.
 
 4. **Contradiction Audit Resolutions**:
    - **R7 / ₹5,000 policy**: Contradiction found in `product-context.md` (which invented a dual-approval rule > ₹5,000). Resolved and harmonized to match `Requirements Freeze.md` R7 and `context/project-overview.md` R7 (HG-07 open Decision Gate).
