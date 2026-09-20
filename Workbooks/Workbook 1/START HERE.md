@@ -1,19 +1,21 @@
 # START HERE
 
-> Source: `Phase_1_Product_Architecture_Google_AI_Studio_AUTONOMOUS_REVISED.xlsx`
+> Source: `Phase_1_Product_Architecture_Google_AI_Studio_AUTONOMOUS_REVISED.xlsx` — Verification Revision 2
 
-| PHASE 1 — PRODUCT UNDERSTANDING, REQUIREMENTS FREEZE & ARCHITECTURE \| GOOGLE AI STUDIO AUTONOMOUS HANDOFF |  |
+| PHASE 1 — PRODUCT UNDERSTANDING, REQUIREMENTS FREEZE & ARCHITECTURE |  |
 | --- | --- |
-| Item | Instruction |
-| Purpose | This workbook is the complete execution contract for Phase 1 only. Upload this workbook to Google AI Studio at the start of the project. AI Studio must execute the phase autonomously, stop only when a human action/decision is genuinely required, tell the user exactly what to do, wait, and resume when the user confirms completion. |
-| Phase window | Day 1 — 20-Sep-2026, 08:00–09:00 local time. Do not silently continue into Phase 2 before Phase 1 passes its final gate. |
-| Application | Internal company master website for approximately 20 people initially, designed so the same architecture can support growth to approximately 100 people. |
-| Core requirement | Projects + Finance + HR + project files + expense management + MOM email + out-of-pocket reimbursement + salary + investments + notes + permissions + a genuinely flexible visual website builder. |
-| Builder requirement | Do NOT downgrade the builder to a predefined block-only editor. It must target drag/drop, arbitrary positioning/layouts, resize, nested columns/containers, responsive breakpoints, typography, styling, animations/interactions, custom CSS, custom JavaScript, reusable components, pages, templates/themes, extension/plugin capability, assets, preview, undo/redo, save/load and publish. |
-| Cost requirement | Hard invariant: ₹0 additional software/service spend beyond the user's existing Google AI Pro subscription, with no mandatory Cloud Billing/Blaze dependency. Firebase Hosting Spark/no-billing path is a candidate; Cloud Run, Firebase App Hosting, Cloud Functions, paid SaaS and paid plugins are not acceptable under the invariant. Any service that requests billing must trigger a STOP gate. |
-| Execution principle | AI is the implementation engine; the workbook is the authoritative Phase 1 contract. Read it fully before acting. Do not guess about requirements that affect architecture. |
-| Source methodology | Follow the attached app-building playbook methodology: understand → pressure-test → architecture → durable context → explicit boundaries → verification. The playbook says architecture and context precede serious implementation and that agents must work in bounded units. |
-| Critical behavior | If human intervention is required (account authorization, OAuth consent, GitHub connection, API key/secret entry, service permission, unresolved product decision), STOP. Do not fake completion. State the exact action, where to perform it, what success looks like, and the exact phrase the user should send to resume. |
-| Resume behavior | When the user says the requested action is complete, re-check the dependency yourself. If it passes, resume automatically from the exact paused task. Do not restart Phase 1 and do not ask the user to repeat already-completed work. |
-| No premature implementation | Phase 1 must produce the product/architecture/context foundation. Do not start business-feature implementation merely because the AI can code it. Phase 2 handles project foundation/environment implementation. |
-| Completion rule | Phase 1 is complete only when every Phase 1 acceptance criterion passes, all required decisions are recorded, the Zero-Billing Architecture Proof is complete, all context files exist and agree, human gates are resolved or explicitly documented, and a handoff package for Phase 2 is written. |
+| Purpose | This workbook is the complete execution contract for Phase 1. Upload it to Google AI Studio. AI Studio must execute Phase 1 autonomously, stop only when a genuine human action/decision is required, and resume from the exact paused unit after confirmation. |
+| Phase window | Day 1 — 20-Sep-2026, 08:00–09:00 local time. Do not silently continue into Phase 2. |
+| Application | Internal company master website for approximately 20 people initially, with architecture that can support approximately 100 people. |
+| Core requirement | Projects + Finance + HR + files + expense management + MOM email + out-of-pocket reimbursement + salary + investments + notes + permissions + genuinely flexible visual website builder. |
+| Builder requirement | Never downgrade to a block-only editor. Preserve drag/drop, free positioning/layout, nested containers, resize, responsive breakpoints, typography/styling, animations/interactions, custom CSS, custom JavaScript, reusable components, pages, templates/themes, extension/plugin capability, assets, preview, undo/redo, save/load and publish. |
+| Cost requirement | Hard invariant: ₹0 additional software/service spend beyond the existing Google AI Pro subscription, with no mandatory Cloud Billing/Blaze dependency. Cloud Run, Firebase App Hosting, Cloud Functions, paid SaaS and paid plugins are not acceptable as mandatory production dependencies unless the user explicitly changes the invariant. |
+| Source methodology | Understand → pressure-test → architecture → durable context → explicit boundaries → verification. Architecture and context precede serious implementation. |
+| **Verification rule** | **A documented design, source-code presence, or successful local build is NOT by itself proof that an acceptance criterion or ZBA item passed. Every PASS requires concrete evidence recorded in the Verification Evidence Protocol. If evidence is missing, status MUST be OPEN.** |
+| **No self-scoring** | AI must not mark AC/ZBA items PASS merely because it believes the architecture is correct. PASS requires reproducible evidence. |
+| **Human gate rule** | If account authorization, OAuth consent, billing state, console setup, licensing uncertainty, or an unresolved product/security/accounting decision is required, STOP. Never request passwords, private keys, client secrets, access tokens or raw credentials in chat. |
+| **Production architecture rule** | Firebase Hosting static SPA is only a candidate until the complete ZBA proof passes. Express/server.ts remains temporary until its production necessity is actually proven. |
+| **Gemini rule** | Do not invent a "bounded proxy" without identifying where it runs and why that runtime remains within the ₹0/no-billing invariant. If production Gemini cannot be proven safely, classify AI as optional/dev-time or stop at HG-09. |
+| **Gmail rule** | Distinguish interactive user-authorized MOM sending from unattended/background sending. Do not claim the latter is solved merely because the Gmail API can be called from a browser. |
+| **₹5,000 rule** | Retain the ₹5,000 threshold reference, but do not invent final accounting, allowance, extra-line-item, approval or salary-settlement semantics. Those remain a Decision Gate until explicitly resolved. |
+| Completion rule | Phase 1 is complete only when every P0 acceptance criterion has evidence-backed PASS, ZBA-01..ZBA-07 are PASS, no consequential ambiguity remains unrecorded, context files agree, and Phase 2 handoff is complete. Otherwise Phase 1 remains incomplete. |
